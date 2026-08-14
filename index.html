@@ -12,7 +12,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
-      background: #f8f6f7;
+      background: #f7f5f6;
       min-height: 100vh;
       color: #2d2d2d;
       padding: 0;
@@ -23,11 +23,11 @@
     }
     .rainbow-bar {
       width: 100%;
-      height: 4px;
+      height: 3px;
       background: linear-gradient(90deg, #D8303B, #F58634, #FFE61C, #00A859, #00AFEF, #0065A0, #727CB6);
       background-size: 300% 100%;
       animation: arcoirisMove 6s ease-in-out infinite alternate;
-      opacity: 0.6;
+      opacity: 0.4;
     }
     @keyframes arcoirisMove { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
     .container {
@@ -35,29 +35,29 @@
       width: 100%;
       padding: 2rem 2rem 1.5rem;
       background: white;
-      border-radius: 0 0 24px 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-      border: 1px solid #f0ecee;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      border: 1px solid #eeeaec;
     }
     header {
       text-align: center;
       padding: 0.5rem 0 1.5rem;
-      border-bottom: 1px solid #f0ecee;
+      border-bottom: 1px solid #eeeaec;
       margin-bottom: 1.5rem;
     }
     header h1 {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       color: #1a1a1a;
       letter-spacing: 1px;
     }
     header h1 span { color: #b82a6e; }
     header .subtitle {
       font-weight: 300;
-      color: #7a6a72;
+      color: #8a7e84;
       font-size: 0.95rem;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       margin-top: 0.2rem;
     }
     .btn-primary {
@@ -67,16 +67,16 @@
       padding: 12px 32px;
       border-radius: 40px;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
-      transition: 0.25s;
-      box-shadow: 0 4px 16px rgba(184, 42, 110, 0.2);
+      transition: 0.2s;
+      box-shadow: 0 2px 12px rgba(184, 42, 110, 0.15);
       letter-spacing: 0.3px;
     }
     .btn-primary:hover {
       background: #9e2059;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(184, 42, 110, 0.25);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(184, 42, 110, 0.2);
     }
     .btn-secondary {
       background: transparent;
@@ -85,11 +85,14 @@
       padding: 10px 28px;
       border-radius: 40px;
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       cursor: pointer;
-      transition: 0.25s;
+      transition: 0.2s;
     }
-    .btn-secondary:hover { background: #b82a6e; color: white; }
+    .btn-secondary:hover {
+      background: #b82a6e;
+      color: white;
+    }
     .btn-sutil {
       background: none;
       border: none;
@@ -109,15 +112,14 @@
     }
     .premio-card {
       background: #faf8f9;
-      border-radius: 16px;
+      border-radius: 14px;
       padding: 1.2rem 1.8rem;
       min-width: 150px;
       text-align: center;
-      border: 1px solid #f0ecee;
+      border: 1px solid #eeeaec;
       transition: 0.2s;
     }
     .premio-card:hover { border-color: #d4c8ce; }
-    .premio-card .icono { font-size: 1.8rem; margin-bottom: 0.3rem; }
     .premio-card .nombre {
       font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
@@ -133,8 +135,8 @@
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.25);
-      backdrop-filter: blur(4px);
+      background: rgba(0,0,0,0.2);
+      backdrop-filter: blur(3px);
       display: none;
       justify-content: center;
       align-items: center;
@@ -150,14 +152,14 @@
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.06);
       border-top: 4px solid #b82a6e;
       text-align: center;
     }
     .modal-content h2 {
       font-family: 'Playfair Display', serif;
       color: #2d2d2d;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       margin-bottom: 0.3rem;
     }
     .modal-content .sub {
@@ -179,7 +181,7 @@
     }
     .campo-form label {
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
       color: #7a6a72;
       text-transform: uppercase;
@@ -200,7 +202,7 @@
     .campo-form input:focus {
       border-color: #b82a6e;
       background: white;
-      box-shadow: 0 0 0 3px rgba(184, 42, 110, 0.06);
+      box-shadow: 0 0 0 3px rgba(184, 42, 110, 0.05);
     }
     .cantidad-selector {
       display: flex;
@@ -242,9 +244,9 @@
       max-width: 460px;
       aspect-ratio: 1/1;
       border-radius: 50%;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.04);
       background: white;
-      border: 1px solid #f0ecee;
+      border: 1px solid #eeeaec;
     }
     .ruleta-info {
       display: flex;
@@ -260,7 +262,7 @@
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(6px);
       display: none;
       justify-content: center;
       align-items: center;
@@ -276,17 +278,17 @@
       max-width: 480px;
       width: 100%;
       border-top: 6px solid #b82a6e;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
     }
     #resultado-overlay .result-box .titulo {
       font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       color: #b82a6e;
       margin-bottom: 0.3rem;
     }
     #resultado-overlay .result-box .nombre-ganador {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #1a1a1a;
       margin: 0.3rem 0;
     }
@@ -303,7 +305,7 @@
       text-align: center;
       font-size: 0.75rem;
       color: #b8b0b4;
-      border-top: 1px solid #f0ecee;
+      border-top: 1px solid #eeeaec;
     }
     .footer .rainbow-dots {
       display: inline-flex;
@@ -315,11 +317,46 @@
       height: 6px;
       border-radius: 50%;
       display: inline-block;
-      opacity: 0.6;
+      opacity: 0.5;
     }
     .footer .linea-orden { color: #b0a8ac; }
     .footer .linea-asamblea { color: #b82a6e; font-weight: 500; }
     .footer .linea-jurisdiccion { color: #1a5276; }
+    /* Spinner de carga */
+    .spinner {
+      border: 4px solid #f0ecee;
+      border-top: 4px solid #b82a6e;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .loading-text {
+      text-align: center;
+      color: #7a6a72;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2d2d2d;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s;
+      z-index: 9999;
+    }
+    .toast.show { visibility: visible; opacity: 1; }
     @media (max-width: 640px) {
       .container { padding: 1.2rem; }
       header h1 { font-size: 1.8rem; }
@@ -342,22 +379,31 @@
       <p class="subtitle">Cada rifa · 10.000 Gs · Sorteo en vivo</p>
     </header>
 
-    <div id="premios-container">
-      <div class="premios-grid" id="premios-grid"></div>
+    <!-- Contenedor de carga -->
+    <div id="loading-container">
+      <div class="spinner"></div>
+      <div class="loading-text">Cargando datos...</div>
     </div>
 
-    <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin:1.5rem 0;">
-      <button class="btn-primary" onclick="iniciarCompra()">Comprar rifa</button>
-      <button class="btn-secondary" onclick="mostrarRuleta()">Ver ruleta</button>
-    </div>
-
-    <div id="ruleta-container">
-      <canvas id="ruleta-canvas" width="500" height="500"></canvas>
-      <div class="ruleta-info">
-        <span>Participantes: <strong id="participantes-count">0</strong></span>
-        <span class="countdown" id="countdown-display">⏳ Cargando...</span>
+    <!-- Contenido principal (oculto inicialmente) -->
+    <div id="main-content" style="display:none;">
+      <div id="premios-container">
+        <div class="premios-grid" id="premios-grid"></div>
       </div>
-      <button class="btn-sutil" onclick="pedirContraseña()" style="margin-top:10px;">🔐 Girar ruleta (admin)</button>
+
+      <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin:1.5rem 0;">
+        <button class="btn-primary" onclick="iniciarCompra()">Comprar rifa</button>
+        <button class="btn-secondary" onclick="mostrarRuleta()">Ver ruleta</button>
+      </div>
+
+      <div id="ruleta-container">
+        <canvas id="ruleta-canvas" width="500" height="500"></canvas>
+        <div class="ruleta-info">
+          <span>Participantes: <strong id="participantes-count">0</strong></span>
+          <span class="countdown" id="countdown-display">⏳ Cargando...</span>
+        </div>
+        <button class="btn-sutil" onclick="pedirContraseña()" style="margin-top:10px;">Girar ruleta (admin)</button>
+      </div>
     </div>
 
   </div>
@@ -417,7 +463,7 @@
         <label>Celular</label>
         <input type="text" id="campo-celular" placeholder="Ej. 0981 123 456">
       </div>
-      <div style="border-top:1px solid #f0ecee; margin:1rem 0 0.5rem; padding-top:0.5rem;">
+      <div style="border-top:1px solid #eeeaec; margin:1rem 0 0.5rem; padding-top:0.5rem;">
         <p style="font-size:0.9rem; color:#5a4a52;">Cantidad de rifas</p>
         <div class="cantidad-selector">
           <button onclick="cambiarCantidad(-1)">−</button>
@@ -451,6 +497,16 @@
     </div>
   </div>
 
+  <!-- Modal de agradecimiento (al volver de WhatsApp) -->
+  <div class="modal-overlay" id="modal-gracias">
+    <div class="modal-content">
+      <h2>¡Gracias por tu compra!</h2>
+      <p class="sub">Tu aporte ayuda a que la Asamblea siga creciendo.</p>
+      <p style="font-size:0.85rem; color:#7a6a72; margin-bottom:1rem;">En breve recibirás la confirmación de tu pago.</p>
+      <button class="btn-primary" onclick="cerrarModal('modal-gracias')">Continuar</button>
+    </div>
+  </div>
+
   <div id="resultado-overlay">
     <div class="result-box">
       <div class="titulo">¡FELICIDADES!</div>
@@ -460,7 +516,7 @@
     </div>
   </div>
 
-  <div id="toast" style="position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#2d2d2d; color:white; padding:12px 24px; border-radius:40px; font-weight:500; font-size:0.9rem; box-shadow:0 8px 30px rgba(0,0,0,0.1); visibility:hidden; opacity:0; transition:0.3s; z-index:9999;">Mensaje</div>
+  <div id="toast" class="toast">Mensaje</div>
 
   <script>
     // ============================================================
@@ -479,37 +535,59 @@
     let niñaSeleccionada = '';
 
     // ============================================================
+    // MOSTRAR/OCULTAR CARGA
+    // ============================================================
+    function mostrarCarga(visible) {
+      document.getElementById('loading-container').style.display = visible ? 'block' : 'none';
+      document.getElementById('main-content').style.display = visible ? 'none' : 'block';
+    }
+
+    // ============================================================
     // INICIALIZACIÓN
     // ============================================================
     async function init() {
+      mostrarCarga(true);
       try {
         const resp = await fetch(SCRIPT_URL);
-        const data = await resp.json();
+        const text = await resp.text();
+        const data = JSON.parse(text);
+        
         participantes = data.participantes || [];
         premios = data.admin?.premios || [];
         datosAdmin = data.admin || {};
         listaChicas = data.chicas || [];
 
+        // Mostrar premios
         const grid = document.getElementById('premios-grid');
         grid.innerHTML = '';
         premios.forEach(p => {
           grid.innerHTML += `
             <div class="premio-card">
-              <div class="icono">🎁</div>
               <div class="nombre">${p.nombre}</div>
               <div class="estado ${p.ganador ? 'ganado' : ''}">${p.ganador ? '🏆 ' + p.ganador : 'Disponible'}</div>
             </div>
           `;
         });
 
-        document.getElementById('participantes-count').textContent = participantes.filter(p => p.pagado === 'SI').length;
+        // Contar participantes con pagado = SI
+        const participantesPagados = participantes.filter(p => p.pagado === 'SI');
+        document.getElementById('participantes-count').textContent = participantesPagados.length;
 
         if (datosAdmin.fecha) {
           iniciarCuentaRegresiva(datosAdmin.fecha);
         }
+
+        // Verificar si volvemos de WhatsApp
+        if (sessionStorage.getItem('volviendoDeWhatsApp')) {
+          sessionStorage.removeItem('volviendoDeWhatsApp');
+          document.getElementById('modal-gracias').classList.add('active');
+        }
+
+        mostrarCarga(false);
       } catch (e) {
-        console.error(e);
-        mostrarToast('Error al cargar datos.');
+        console.error('Error en init:', e);
+        mostrarCarga(false);
+        mostrarToast('Error al cargar datos. Recarga la página.');
       }
     }
 
@@ -541,7 +619,9 @@
     function mostrarRuleta() {
       const container = document.getElementById('ruleta-container');
       container.classList.toggle('active');
-      if (container.classList.contains('active')) dibujarRuleta();
+      if (container.classList.contains('active')) {
+        dibujarRuleta();
+      }
     }
 
     function dibujarRuleta() {
@@ -552,6 +632,7 @@
 
       ctx.clearRect(0, 0, w, h);
 
+      // Obtener nombres de participantes con pagado = SI
       const nombres = [];
       participantes.forEach(p => {
         if (p.pagado === 'SI') {
@@ -570,6 +651,7 @@
         return;
       }
 
+      // Orden consistente
       const seed = participantes.length;
       const orden = nombres.map((n, i) => ({ n, i }));
       orden.sort((a,b) => (a.i * seed + a.n.length) - (b.i * seed + b.n.length));
@@ -878,6 +960,8 @@
         `Monto a pagar: ${total.toLocaleString('es-PY')} Gs\n` +
         `Alias: ${alias}`
       );
+      // Marcar que vamos a WhatsApp
+      sessionStorage.setItem('volviendoDeWhatsApp', 'true');
       window.open(`https://wa.me/${datosAdmin.telefono || '595981614237'}?text=${mensaje}`, '_blank');
       mostrarToast('¡Gracias por tu compra!');
     }
@@ -899,12 +983,8 @@
     function mostrarToast(msg) {
       const toast = document.getElementById('toast');
       toast.textContent = msg;
-      toast.style.visibility = 'visible';
-      toast.style.opacity = '1';
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        setTimeout(() => toast.style.visibility = 'hidden', 300);
-      }, 3500);
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
     }
 
     // ============================================================
