@@ -99,6 +99,7 @@
       transition: 0.2s;
     }
     .btn-sutil:hover { color: #b82a6e; }
+    /* === PREMIOS - ESTILO PROFESIONAL === */
     .premios-grid {
       display: flex;
       flex-wrap: wrap;
@@ -108,15 +109,14 @@
     }
     .premio-card {
       background: #faf8f9;
-      border-radius: 16px;
-      padding: 1.2rem 1.8rem;
-      min-width: 150px;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      min-width: 140px;
       text-align: center;
-      border: 1px solid #f0ecee;
+      border: 1px solid #e8e2e5;
       transition: 0.2s;
     }
-    .premio-card:hover { border-color: #d4c8ce; }
-    .premio-card .icono { font-size: 1.8rem; margin-bottom: 0.3rem; }
+    .premio-card:hover { border-color: #c8c0c4; }
     .premio-card .nombre {
       font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
@@ -129,6 +129,7 @@
       margin-top: 4px;
     }
     .premio-card .estado.ganado { color: #b82a6e; font-weight: 500; }
+    /* === FIN PREMIOS === */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -333,7 +334,6 @@
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
       100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
     }
-    /* Mensaje de carga */
     .loading-placeholder {
       text-align: center;
       padding: 3rem 1rem;
@@ -351,7 +351,6 @@
       margin-bottom: 1rem;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-    /* Mensaje de agradecimiento */
     .gracias-mensaje {
       background: #f0f7f0;
       border-left: 4px solid #4caf50;
@@ -377,12 +376,10 @@
       <p class="subtitle">Cada rifa · 10.000 Gs · Sorteo en vivo</p>
     </header>
 
-    <!-- Mensaje de agradecimiento (se muestra al volver de WhatsApp) -->
     <div id="graciasMensaje" class="gracias-mensaje">
       ✅ ¡Gracias por tu compra! Tu participación ha sido registrada. Te contactaremos para confirmar el pago.
     </div>
 
-    <!-- Contenedor de premios (carga inicial) -->
     <div id="premios-container">
       <div id="loadingPlaceholder" class="loading-placeholder">
         <div class="spinner"></div>
@@ -511,7 +508,7 @@
     // ============================================================
     // CONFIGURACIÓN
     // ============================================================
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw108qJ0KEoFILSsLsAFQlzNWN8JcF00IODn9wbQyqEvGWViHRzHDHIjX7vL0buFIHHRg/exec"; // <--- REEMPLAZAR CON TU URL
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMI0KX6hJnyxMAWU2v-S72UebJ4QK_PI7_lxGaimYozyDKxzV5nEDOcnb5mcRyhjRm/exec"; // <--- REEMPLAZAR CON TU URL
     const PRECIO_RIFA = 10000;
 
     let cantidadRifas = 1;
@@ -525,13 +522,12 @@
     let ruletaGirando = false;
 
     // ============================================================
-    // MOSTRAR MENSAJE DE AGRADECIMIENTO SI VIENE DE WHATSAPP
+    // MOSTRAR MENSAJE DE AGRADECIMIENTO
     // ============================================================
     (function() {
       const params = new URLSearchParams(window.location.search);
       if (params.get('gracias') === 'true') {
         sessionStorage.setItem('mostrarGracias', 'true');
-        // Limpiar URL
         window.history.replaceState({}, document.title, window.location.pathname);
       }
       if (sessionStorage.getItem('mostrarGracias') === 'true') {
@@ -555,7 +551,6 @@
         datosAdmin = data.admin || {};
         listaChicas = data.chicas || [];
 
-        // Ocultar loading y mostrar grid
         document.getElementById('loadingPlaceholder').style.display = 'none';
         document.getElementById('premios-grid').style.display = 'flex';
 
@@ -564,7 +559,6 @@
         premios.forEach(p => {
           grid.innerHTML += `
             <div class="premio-card">
-              <div class="icono">🎁</div>
               <div class="nombre">${p.nombre}</div>
               <div class="estado ${p.ganador ? 'ganado' : ''}">${p.ganador ? '🏆 ' + p.ganador : 'Disponible'}</div>
             </div>
@@ -606,7 +600,7 @@
     }
 
     // ============================================================
-    // RULETA
+    // RULETA (CORREGIDA: ÁNGULO EXACTO Y ELIMINACIÓN)
     // ============================================================
     function mostrarRuleta() {
       const container = document.getElementById('ruleta-container');
@@ -624,10 +618,10 @@
 
       ctx.clearRect(0, 0, w, h);
 
-      // Construir lista de nombres con repeticiones según cantidad
+      // Construir lista de nombres con repeticiones según cantidad (solo pagados y cantidad>0)
       const nombres = [];
       participantes.forEach(p => {
-        if (p.pagado === 'SI') {
+        if (p.pagado === 'SI' && (p.cantidad || 0) > 0) {
           for (let i = 0; i < (p.cantidad || 1); i++) {
             nombres.push(p.nombre);
           }
@@ -644,8 +638,10 @@
         return;
       }
 
+      // Guardar lista para el sorteo (sin eliminados)
       ruletaNombresConCantidad = nombres.map(n => ({ nombre: n, eliminado: false }));
 
+      // Orden consistente
       const seed = participantes.length;
       const orden = ruletaNombresConCantidad.map((item, i) => ({ ...item, idx: i }));
       orden.sort((a,b) => (a.idx * seed + a.nombre.length) - (b.idx * seed + b.nombre.length));
@@ -706,7 +702,7 @@
     }
 
     // ============================================================
-    // GIRAR RULETA (ADMIN)
+    // GIRAR RULETA (ADMIN) - CORREGIDO
     // ============================================================
     function pedirContraseña() {
       document.getElementById('modal-password').classList.add('active');
@@ -749,6 +745,7 @@
       if (ruletaGirando) return;
       ruletaGirando = true;
 
+      // Obtener participantes disponibles (no eliminados)
       const disponibles = ruletaNombresConCantidad.filter(item => !item.eliminado);
       if (disponibles.length === 0) {
         mostrarToast('No hay participantes disponibles');
@@ -756,9 +753,11 @@
         return;
       }
 
+      // Elegir un ganador al azar
       const idxGanador = Math.floor(Math.random() * disponibles.length);
       const ganadorNombre = disponibles[idxGanador].nombre;
 
+      // Encontrar la posición real en el array ordenado (window.ruletaNombres)
       const posGanador = window.ruletaNombres.indexOf(ganadorNombre);
       if (posGanador === -1) {
         ruletaGirando = false;
@@ -768,10 +767,20 @@
 
       const total = window.ruletaNombres.length;
       const angulo = (2 * Math.PI) / total;
-      const anguloObjetivo = - (posGanador * angulo + angulo/2) + Math.PI/2;
+
+      // Ángulo donde está el centro del sector del ganador
+      const anguloSector = posGanador * angulo + angulo/2;
+
+      // El triángulo está en la parte superior: ángulo -PI/2
+      // Queremos que el centro del sector quede alineado con el triángulo
+      // ángulo objetivo = -PI/2 - anguloSector
+      const anguloObjetivo = -Math.PI/2 - anguloSector;
+
+      // Agregar vueltas extra para que gire varias veces
       const vueltas = 6 + Math.floor(Math.random() * 3);
       const anguloFinal = anguloObjetivo + vueltas * 2 * Math.PI;
 
+      // Animación
       const canvas = document.getElementById('ruleta-canvas');
       const ctx = canvas.getContext('2d');
       const w = canvas.width, h = canvas.height;
@@ -826,6 +835,7 @@
 
         ctx.restore();
 
+        // Círculo central (fijo)
         ctx.beginPath();
         ctx.arc(cx, cy, 18, 0, 2 * Math.PI);
         ctx.fillStyle = '#b82a6e';
@@ -834,6 +844,7 @@
         ctx.lineWidth = 2;
         ctx.stroke();
 
+        // Triángulo fijo en la parte superior
         ctx.beginPath();
         ctx.moveTo(cx, cy - r - 12);
         ctx.lineTo(cx - 14, cy - r - 30);
@@ -850,27 +861,43 @@
           window.ruletaAngulo = anguloFinal;
           ruletaGirando = false;
 
-          // Reducir cantidad del ganador
-          let encontrado = false;
-          for (let i = 0; i < ruletaNombresConCantidad.length; i++) {
-            if (ruletaNombresConCantidad[i].nombre === ganadorNombre && !ruletaNombresConCantidad[i].eliminado) {
-              const participante = participantes.find(p => p.nombre === ganadorNombre && p.pagado === 'SI');
-              if (participante) {
-                participante.cantidad = Math.max(0, (participante.cantidad || 1) - 1);
-                if (participante.cantidad === 0) {
-                  ruletaNombresConCantidad[i].eliminado = true;
-                }
-              } else {
-                ruletaNombresConCantidad[i].eliminado = true;
-              }
-              encontrado = true;
+          // --- Eliminar una rifa del ganador ---
+          // Buscar el participante real
+          let participanteGanador = null;
+          for (let p of participantes) {
+            if (p.nombre === ganadorNombre && p.pagado === 'SI' && (p.cantidad || 0) > 0) {
+              participanteGanador = p;
               break;
             }
           }
 
+          if (participanteGanador) {
+            // Reducir cantidad en 1
+            participanteGanador.cantidad = Math.max(0, (participanteGanador.cantidad || 1) - 1);
+            // Si llegó a 0, marcarlo como eliminado en el array temporal
+            if (participanteGanador.cantidad === 0) {
+              // Marcar todas las ocurrencias de este nombre como eliminadas
+              ruletaNombresConCantidad.forEach(item => {
+                if (item.nombre === ganadorNombre) {
+                  item.eliminado = true;
+                }
+              });
+            }
+          } else {
+            // Si no se encuentra (caso raro), eliminar una instancia del array
+            for (let i = 0; i < ruletaNombresConCantidad.length; i++) {
+              if (ruletaNombresConCantidad[i].nombre === ganadorNombre && !ruletaNombresConCantidad[i].eliminado) {
+                ruletaNombresConCantidad[i].eliminado = true;
+                break;
+              }
+            }
+          }
+
+          // Pausa de 1.5 segundos antes de mostrar el resultado
           setTimeout(() => {
             mostrarGanador(ganadorNombre, nombrePremio);
             guardarGanador(ganadorNombre, nombrePremio);
+            // Redibujar la ruleta para reflejar la eliminación
             setTimeout(() => {
               dibujarRuleta();
             }, 300);
@@ -890,6 +917,7 @@
 
     function cerrarResultado() {
       document.getElementById('resultado-overlay').classList.remove('active');
+      // Recargar datos para actualizar la lista de premios
       init();
     }
 
@@ -1013,7 +1041,6 @@
       );
       window.open(`https://wa.me/${datosAdmin.telefono || '595981614237'}?text=${mensaje}`, '_blank');
       mostrarToast('¡Gracias por tu compra!');
-      // Marcar que volvemos de WhatsApp
       setTimeout(() => {
         window.location.href = window.location.pathname + '?gracias=true';
       }, 500);
