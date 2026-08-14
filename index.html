@@ -9,10 +9,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ===== RESET Y BASE ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
-      background: #f7f5f6;
+      background: #f8f6f7;
       min-height: 100vh;
       color: #2d2d2d;
       padding: 0;
@@ -23,11 +24,11 @@
     }
     .rainbow-bar {
       width: 100%;
-      height: 3px;
+      height: 4px;
       background: linear-gradient(90deg, #D8303B, #F58634, #FFE61C, #00A859, #00AFEF, #0065A0, #727CB6);
       background-size: 300% 100%;
       animation: arcoirisMove 6s ease-in-out infinite alternate;
-      opacity: 0.4;
+      opacity: 0.6;
     }
     @keyframes arcoirisMove { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
     .container {
@@ -35,29 +36,29 @@
       width: 100%;
       padding: 2rem 2rem 1.5rem;
       background: white;
-      border-radius: 0 0 20px 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-      border: 1px solid #eeeaec;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      border: 1px solid #f0ecee;
     }
     header {
       text-align: center;
       padding: 0.5rem 0 1.5rem;
-      border-bottom: 1px solid #eeeaec;
+      border-bottom: 1px solid #f0ecee;
       margin-bottom: 1.5rem;
     }
     header h1 {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       color: #1a1a1a;
       letter-spacing: 1px;
     }
     header h1 span { color: #b82a6e; }
     header .subtitle {
       font-weight: 300;
-      color: #8a7e84;
+      color: #7a6a72;
       font-size: 0.95rem;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
       margin-top: 0.2rem;
     }
     .btn-primary {
@@ -67,16 +68,16 @@
       padding: 12px 32px;
       border-radius: 40px;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 1rem;
       cursor: pointer;
-      transition: 0.2s;
-      box-shadow: 0 2px 12px rgba(184, 42, 110, 0.15);
+      transition: 0.25s;
+      box-shadow: 0 4px 16px rgba(184, 42, 110, 0.2);
       letter-spacing: 0.3px;
     }
     .btn-primary:hover {
       background: #9e2059;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(184, 42, 110, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(184, 42, 110, 0.25);
     }
     .btn-secondary {
       background: transparent;
@@ -85,14 +86,11 @@
       padding: 10px 28px;
       border-radius: 40px;
       font-weight: 500;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       cursor: pointer;
-      transition: 0.2s;
+      transition: 0.25s;
     }
-    .btn-secondary:hover {
-      background: #b82a6e;
-      color: white;
-    }
+    .btn-secondary:hover { background: #b82a6e; color: white; }
     .btn-sutil {
       background: none;
       border: none;
@@ -103,40 +101,43 @@
       transition: 0.2s;
     }
     .btn-sutil:hover { color: #b82a6e; }
+
+    /* ===== PREMIOS (más profesionales) ===== */
     .premios-grid {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 16px;
-      justify-content: center;
       margin: 1.5rem 0 2rem;
     }
     .premio-card {
       background: #faf8f9;
-      border-radius: 14px;
-      padding: 1.2rem 1.8rem;
-      min-width: 150px;
+      border-radius: 12px;
+      padding: 1.2rem 1.2rem;
       text-align: center;
-      border: 1px solid #eeeaec;
+      border: 1px solid #f0ecee;
       transition: 0.2s;
     }
     .premio-card:hover { border-color: #d4c8ce; }
     .premio-card .nombre {
       font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
       color: #2d2d2d;
+      margin-bottom: 4px;
     }
     .premio-card .estado {
       font-size: 0.7rem;
       color: #b0a8ac;
-      margin-top: 4px;
+      font-weight: 400;
     }
     .premio-card .estado.ganado { color: #b82a6e; font-weight: 500; }
+
+    /* ===== MODALES ===== */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.2);
-      backdrop-filter: blur(3px);
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(4px);
       display: none;
       justify-content: center;
       align-items: center;
@@ -152,14 +153,14 @@
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
       border-top: 4px solid #b82a6e;
       text-align: center;
     }
     .modal-content h2 {
       font-family: 'Playfair Display', serif;
       color: #2d2d2d;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       margin-bottom: 0.3rem;
     }
     .modal-content .sub {
@@ -181,7 +182,7 @@
     }
     .campo-form label {
       display: block;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: #7a6a72;
       text-transform: uppercase;
@@ -202,7 +203,7 @@
     .campo-form input:focus {
       border-color: #b82a6e;
       background: white;
-      box-shadow: 0 0 0 3px rgba(184, 42, 110, 0.05);
+      box-shadow: 0 0 0 3px rgba(184, 42, 110, 0.06);
     }
     .cantidad-selector {
       display: flex;
@@ -232,6 +233,8 @@
       margin: 0.3rem 0 0.8rem;
     }
     .total-text strong { color: #b82a6e; font-size: 1.4rem; }
+
+    /* ===== RULETA ===== */
     #ruleta-container {
       display: none;
       flex-direction: column;
@@ -239,14 +242,33 @@
       margin: 1.5rem 0;
     }
     #ruleta-container.active { display: flex; }
-    #ruleta-canvas {
+    #ruleta-canvas-wrapper {
+      position: relative;
       width: 100%;
       max-width: 460px;
       aspect-ratio: 1/1;
+    }
+    #ruleta-canvas-wrapper canvas {
+      width: 100% !important;
+      height: 100% !important;
       border-radius: 50%;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
       background: white;
-      border: 1px solid #eeeaec;
+      border: 1px solid #f0ecee;
+      display: block;
+    }
+    #ruleta-indicator {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      width: 0;
+      height: 0;
+      border-left: 16px solid transparent;
+      border-right: 16px solid transparent;
+      border-top: 30px solid #b82a6e;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
     }
     .ruleta-info {
       display: flex;
@@ -258,11 +280,13 @@
       color: #7a6a72;
     }
     .ruleta-info .countdown { font-weight: 500; color: #b82a6e; }
+
+    /* ===== RESULTADO ===== */
     #resultado-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
       display: none;
       justify-content: center;
       align-items: center;
@@ -278,17 +302,17 @@
       max-width: 480px;
       width: 100%;
       border-top: 6px solid #b82a6e;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
     }
     #resultado-overlay .result-box .titulo {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       color: #b82a6e;
       margin-bottom: 0.3rem;
     }
     #resultado-overlay .result-box .nombre-ganador {
       font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: #1a1a1a;
       margin: 0.3rem 0;
     }
@@ -297,6 +321,53 @@
       color: #5a4a52;
       margin-bottom: 1.2rem;
     }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2d2d2d;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s;
+      z-index: 9999;
+      max-width: 90%;
+    }
+    .toast.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* ===== SPINNER ===== */
+    .spinner {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border: 3px solid #f0ecee;
+      border-radius: 50%;
+      border-top-color: #b82a6e;
+      animation: spin 0.8s ease-in-out infinite;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .cargando-texto {
+      text-align: center;
+      padding: 2rem 0;
+      color: #7a6a72;
+      font-size: 0.95rem;
+    }
+
+    /* ===== FOOTER ===== */
     .footer {
       max-width: 1100px;
       width: 100%;
@@ -305,7 +376,7 @@
       text-align: center;
       font-size: 0.75rem;
       color: #b8b0b4;
-      border-top: 1px solid #eeeaec;
+      border-top: 1px solid #f0ecee;
     }
     .footer .rainbow-dots {
       display: inline-flex;
@@ -317,51 +388,17 @@
       height: 6px;
       border-radius: 50%;
       display: inline-block;
-      opacity: 0.5;
+      opacity: 0.6;
     }
     .footer .linea-orden { color: #b0a8ac; }
     .footer .linea-asamblea { color: #b82a6e; font-weight: 500; }
     .footer .linea-jurisdiccion { color: #1a5276; }
-    /* Spinner de carga */
-    .spinner {
-      border: 4px solid #f0ecee;
-      border-top: 4px solid #b82a6e;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 2rem auto;
-    }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    .loading-text {
-      text-align: center;
-      color: #7a6a72;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-    }
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #2d2d2d;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 40px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-      visibility: hidden;
-      opacity: 0;
-      transition: 0.3s;
-      z-index: 9999;
-    }
-    .toast.show { visibility: visible; opacity: 1; }
+
     @media (max-width: 640px) {
       .container { padding: 1.2rem; }
       header h1 { font-size: 1.8rem; }
       .modal-content { padding: 1.5rem; }
-      .premio-card { min-width: 120px; padding: 0.8rem 1rem; }
+      .premios-grid { grid-template-columns: 1fr 1fr; }
       .cantidad-selector { font-size: 1.3rem; }
       #resultado-overlay .result-box .titulo { font-size: 1.8rem; }
       #resultado-overlay .result-box .nombre-ganador { font-size: 1.4rem; }
@@ -379,35 +416,33 @@
       <p class="subtitle">Cada rifa · 10.000 Gs · Sorteo en vivo</p>
     </header>
 
-    <!-- Contenedor de carga -->
-    <div id="loading-container">
-      <div class="spinner"></div>
-      <div class="loading-text">Cargando datos...</div>
+    <!-- PREMIOS -->
+    <div id="premios-container">
+      <div class="premios-grid" id="premios-grid"></div>
     </div>
 
-    <!-- Contenido principal (oculto inicialmente) -->
-    <div id="main-content" style="display:none;">
-      <div id="premios-container">
-        <div class="premios-grid" id="premios-grid"></div>
-      </div>
+    <!-- BOTONES -->
+    <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin:1.5rem 0;">
+      <button class="btn-primary" onclick="iniciarCompra()">Comprar rifa</button>
+      <button class="btn-secondary" onclick="mostrarRuleta()">Ver ruleta</button>
+    </div>
 
-      <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin:1.5rem 0;">
-        <button class="btn-primary" onclick="iniciarCompra()">Comprar rifa</button>
-        <button class="btn-secondary" onclick="mostrarRuleta()">Ver ruleta</button>
-      </div>
-
-      <div id="ruleta-container">
+    <!-- RULETA -->
+    <div id="ruleta-container">
+      <div id="ruleta-canvas-wrapper">
         <canvas id="ruleta-canvas" width="500" height="500"></canvas>
-        <div class="ruleta-info">
-          <span>Participantes: <strong id="participantes-count">0</strong></span>
-          <span class="countdown" id="countdown-display">⏳ Cargando...</span>
-        </div>
-        <button class="btn-sutil" onclick="pedirContraseña()" style="margin-top:10px;">Girar ruleta (admin)</button>
+        <div id="ruleta-indicator"></div>
       </div>
+      <div class="ruleta-info">
+        <span>Participantes: <strong id="participantes-count">0</strong></span>
+        <span class="countdown" id="countdown-display">⏳ Cargando...</span>
+      </div>
+      <button class="btn-sutil" onclick="pedirContraseña()" style="margin-top:10px;">🔐 Girar ruleta (admin)</button>
     </div>
 
   </div>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="rainbow-dots">
       <span style="background:#D8303B;"></span>
@@ -463,7 +498,7 @@
         <label>Celular</label>
         <input type="text" id="campo-celular" placeholder="Ej. 0981 123 456">
       </div>
-      <div style="border-top:1px solid #eeeaec; margin:1rem 0 0.5rem; padding-top:0.5rem;">
+      <div style="border-top:1px solid #f0ecee; margin:1rem 0 0.5rem; padding-top:0.5rem;">
         <p style="font-size:0.9rem; color:#5a4a52;">Cantidad de rifas</p>
         <div class="cantidad-selector">
           <button onclick="cambiarCantidad(-1)">−</button>
@@ -497,16 +532,6 @@
     </div>
   </div>
 
-  <!-- Modal de agradecimiento (al volver de WhatsApp) -->
-  <div class="modal-overlay" id="modal-gracias">
-    <div class="modal-content">
-      <h2>¡Gracias por tu compra!</h2>
-      <p class="sub">Tu aporte ayuda a que la Asamblea siga creciendo.</p>
-      <p style="font-size:0.85rem; color:#7a6a72; margin-bottom:1rem;">En breve recibirás la confirmación de tu pago.</p>
-      <button class="btn-primary" onclick="cerrarModal('modal-gracias')">Continuar</button>
-    </div>
-  </div>
-
   <div id="resultado-overlay">
     <div class="result-box">
       <div class="titulo">¡FELICIDADES!</div>
@@ -516,13 +541,14 @@
     </div>
   </div>
 
-  <div id="toast" class="toast">Mensaje</div>
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
 
   <script>
     // ============================================================
     // CONFIGURACIÓN
     // ============================================================
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw108qJ0KEoFILSsLsAFQlzNWN8JcF00IODn9wbQyqEvGWViHRzHDHIjX7vL0buFIHHRg/exec"; // <--- REEMPLAZAR
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMI0KX6hJnyxMAWU2v-S72UebJ4QK_PI7_lxGaimYozyDKxzV5nEDOcnb5mcRyhjRm/exec"; // <--- REEMPLAZAR
     const PRECIO_RIFA = 10000;
 
     let cantidadRifas = 1;
@@ -534,60 +560,87 @@
     let ganadorActual = null;
     let niñaSeleccionada = '';
 
+    // Colores arcoíris para la ruleta
+    const COLORES_RULETA = [
+      '#D8303B', '#F58634', '#FFE61C', '#00A859',
+      '#00AFEF', '#0065A0', '#727CB6'
+    ];
+
     // ============================================================
-    // MOSTRAR/OCULTAR CARGA
+    // MOSTRAR TOAST
     // ============================================================
-    function mostrarCarga(visible) {
-      document.getElementById('loading-container').style.display = visible ? 'block' : 'none';
-      document.getElementById('main-content').style.display = visible ? 'none' : 'block';
+    function mostrarToast(msg, duracion = 4000) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, duracion);
+    }
+
+    // ============================================================
+    // SPINNER DE CARGA
+    // ============================================================
+    function mostrarCargando(mostrar) {
+      const grid = document.getElementById('premios-grid');
+      if (mostrar) {
+        grid.innerHTML = `<div class="cargando-texto"><div class="spinner"></div> Cargando rifa...</div>`;
+      }
     }
 
     // ============================================================
     // INICIALIZACIÓN
     // ============================================================
     async function init() {
-      mostrarCarga(true);
+      mostrarCargando(true);
       try {
         const resp = await fetch(SCRIPT_URL);
-        const text = await resp.text();
-        const data = JSON.parse(text);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
         
         participantes = data.participantes || [];
         premios = data.admin?.premios || [];
         datosAdmin = data.admin || {};
         listaChicas = data.chicas || [];
 
-        // Mostrar premios
+        // DEBUG: ver participantes con pagado = SI
+        console.log("👥 Participantes cargados:", participantes);
+        const pagados = participantes.filter(p => p.pagado === 'SI');
+        console.log("✅ Pagados (SI):", pagados);
+
         const grid = document.getElementById('premios-grid');
         grid.innerHTML = '';
-        premios.forEach(p => {
-          grid.innerHTML += `
-            <div class="premio-card">
-              <div class="nombre">${p.nombre}</div>
-              <div class="estado ${p.ganador ? 'ganado' : ''}">${p.ganador ? '🏆 ' + p.ganador : 'Disponible'}</div>
-            </div>
-          `;
-        });
+        if (premios.length === 0) {
+          grid.innerHTML = '<p style="color:#b0a8ac; text-align:center; width:100%;">No hay premios cargados.</p>';
+        } else {
+          premios.forEach(p => {
+            grid.innerHTML += `
+              <div class="premio-card">
+                <div class="nombre">${p.nombre}</div>
+                <div class="estado ${p.ganador ? 'ganado' : ''}">${p.ganador ? '🏆 ' + p.ganador : 'Disponible'}</div>
+              </div>
+            `;
+          });
+        }
 
-        // Contar participantes con pagado = SI
-        const participantesPagados = participantes.filter(p => p.pagado === 'SI');
-        document.getElementById('participantes-count').textContent = participantesPagados.length;
+        document.getElementById('participantes-count').textContent = participantes.filter(p => p.pagado === 'SI').length;
 
         if (datosAdmin.fecha) {
           iniciarCuentaRegresiva(datosAdmin.fecha);
         }
 
-        // Verificar si volvemos de WhatsApp
-        if (sessionStorage.getItem('volviendoDeWhatsApp')) {
-          sessionStorage.removeItem('volviendoDeWhatsApp');
-          document.getElementById('modal-gracias').classList.add('active');
+        // Mostrar mensaje de agradecimiento si volvemos de WhatsApp
+        if (localStorage.getItem('gracias_compra') === 'true') {
+          localStorage.removeItem('gracias_compra');
+          mostrarToast('¡Gracias por tu compra! Tu rifa será registrada al confirmar el pago.', 5000);
         }
 
-        mostrarCarga(false);
       } catch (e) {
-        console.error('Error en init:', e);
-        mostrarCarga(false);
+        console.error(e);
         mostrarToast('Error al cargar datos. Recarga la página.');
+      } finally {
+        mostrarCargando(false);
       }
     }
 
@@ -648,6 +701,8 @@
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText('Sin participantes aún', cx, cy);
+        window.ruletaNombres = [];
+        window.ruletaAngulo = 0;
         return;
       }
 
@@ -660,6 +715,7 @@
       const total = nombresOrdenados.length;
       const angulo = (2 * Math.PI) / total;
 
+      // Dibujar segmentos con colores arcoíris
       for (let i = 0; i < total; i++) {
         const start = i * angulo;
         const end = start + angulo;
@@ -667,38 +723,36 @@
         ctx.moveTo(cx, cy);
         ctx.arc(cx, cy, r, start, end);
         ctx.closePath();
-        ctx.fillStyle = i % 2 === 0 ? '#f5f0f2' : '#ece6e9';
+        // Color arcoíris
+        const colorIdx = i % COLORES_RULETA.length;
+        ctx.fillStyle = COLORES_RULETA[colorIdx];
         ctx.fill();
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 1.5;
         ctx.stroke();
 
+        // Texto
         ctx.save();
         ctx.translate(cx, cy);
         ctx.rotate(start + angulo/2);
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.font = '11px Montserrat';
-        ctx.fillStyle = '#2d2d2d';
+        ctx.font = 'bold 11px Montserrat';
+        ctx.fillStyle = '#fff';
+        ctx.shadowColor = 'rgba(0,0,0,0.3)';
+        ctx.shadowBlur = 4;
         ctx.fillText(nombresOrdenados[i], r * 0.65, 0);
         ctx.restore();
       }
 
+      // Círculo central
       ctx.beginPath();
-      ctx.arc(cx, cy, 18, 0, 2 * Math.PI);
+      ctx.arc(cx, cy, 20, 0, 2 * Math.PI);
       ctx.fillStyle = '#b82a6e';
       ctx.fill();
       ctx.strokeStyle = 'white';
       ctx.lineWidth = 2;
       ctx.stroke();
-
-      ctx.beginPath();
-      ctx.moveTo(cx + r + 8, cy);
-      ctx.lineTo(cx + r + 26, cy - 8);
-      ctx.lineTo(cx + r + 26, cy + 8);
-      ctx.closePath();
-      ctx.fillStyle = '#b82a6e';
-      ctx.fill();
 
       window.ruletaNombres = nombresOrdenados;
       window.ruletaAngulo = 0;
@@ -715,6 +769,7 @@
 
     function validarContraseña() {
       const pass = document.getElementById('input-password').value.trim();
+      // La contraseña está en la hoja Admin, fila 2, columna C (índice 2)
       if (pass === datosAdmin.contraseña) {
         cerrarModal('modal-password');
         mostrarPremiosParaSortear();
@@ -726,8 +781,10 @@
     function mostrarPremiosParaSortear() {
       const container = document.getElementById('lista-premios');
       container.innerHTML = '';
+      let hayDisponibles = false;
       premios.forEach(p => {
         if (!p.ganador) {
+          hayDisponibles = true;
           const btn = document.createElement('button');
           btn.className = 'btn-secondary';
           btn.textContent = p.nombre;
@@ -736,7 +793,7 @@
           container.appendChild(btn);
         }
       });
-      if (container.children.length === 0) {
+      if (!hayDisponibles) {
         container.innerHTML = '<p style="color:#b0a8ac;">Todos los premios ya tienen ganador.</p>';
       }
       document.getElementById('modal-premios').classList.add('active');
@@ -747,6 +804,7 @@
       if (ruletaGirando) return;
       ruletaGirando = true;
 
+      // Obtener nombres de participantes con pagado = SI
       const nombres = [];
       participantes.forEach(p => {
         if (p.pagado === 'SI') {
@@ -762,9 +820,11 @@
         return;
       }
 
+      // Elegir ganador
       const idx = Math.floor(Math.random() * nombres.length);
       ganadorActual = nombres[idx];
 
+      // Animación de la ruleta
       const canvas = document.getElementById('ruleta-canvas');
       const ctx = canvas.getContext('2d');
       const w = canvas.width, h = canvas.height;
@@ -779,6 +839,8 @@
         return;
       }
 
+      // Ángulo objetivo: queremos que el nombre quede arriba (apuntando al triángulo)
+      // El triángulo está en la parte superior (ángulo -90° o 270°)
       const anguloObjetivo = - (posGanador * angulo + angulo/2) + Math.PI/2;
       const vueltas = 5 + Math.floor(Math.random() * 3);
       const anguloFinal = anguloObjetivo + vueltas * 2 * Math.PI;
@@ -793,6 +855,7 @@
         const eased = 1 - Math.pow(1 - progress, 3);
         const anguloActual = inicioAngulo + (anguloFinal - inicioAngulo) * eased;
 
+        // Dibujar ruleta rotada
         ctx.clearRect(0, 0, w, h);
         ctx.save();
         ctx.translate(cx, cy);
@@ -806,10 +869,11 @@
           ctx.moveTo(cx, cy);
           ctx.arc(cx, cy, r, startA, endA);
           ctx.closePath();
-          ctx.fillStyle = i % 2 === 0 ? '#f5f0f2' : '#ece6e9';
+          const colorIdx = i % COLORES_RULETA.length;
+          ctx.fillStyle = COLORES_RULETA[colorIdx];
           ctx.fill();
-          ctx.strokeStyle = '#fff';
-          ctx.lineWidth = 1;
+          ctx.strokeStyle = 'white';
+          ctx.lineWidth = 1.5;
           ctx.stroke();
 
           ctx.save();
@@ -817,27 +881,22 @@
           ctx.rotate(startA + angulo/2);
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          ctx.font = '11px Montserrat';
-          ctx.fillStyle = '#2d2d2d';
+          ctx.font = 'bold 11px Montserrat';
+          ctx.fillStyle = '#fff';
+          ctx.shadowColor = 'rgba(0,0,0,0.3)';
+          ctx.shadowBlur = 4;
           ctx.fillText(window.ruletaNombres[i], r * 0.65, 0);
           ctx.restore();
         }
 
+        // Círculo central
         ctx.beginPath();
-        ctx.arc(cx, cy, 18, 0, 2 * Math.PI);
+        ctx.arc(cx, cy, 20, 0, 2 * Math.PI);
         ctx.fillStyle = '#b82a6e';
         ctx.fill();
         ctx.strokeStyle = 'white';
         ctx.lineWidth = 2;
         ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(cx + r + 8, cy);
-        ctx.lineTo(cx + r + 26, cy - 8);
-        ctx.lineTo(cx + r + 26, cy + 8);
-        ctx.closePath();
-        ctx.fillStyle = '#b82a6e';
-        ctx.fill();
 
         ctx.restore();
 
@@ -960,10 +1019,12 @@
         `Monto a pagar: ${total.toLocaleString('es-PY')} Gs\n` +
         `Alias: ${alias}`
       );
-      // Marcar que vamos a WhatsApp
-      sessionStorage.setItem('volviendoDeWhatsApp', 'true');
+      
+      // Guardar bandera para mostrar agradecimiento al volver
+      localStorage.setItem('gracias_compra', 'true');
+      
       window.open(`https://wa.me/${datosAdmin.telefono || '595981614237'}?text=${mensaje}`, '_blank');
-      mostrarToast('¡Gracias por tu compra!');
+      mostrarToast('¡Redirigiendo a WhatsApp!', 3000);
     }
 
     async function guardarCompra(nombre, ci, celular, total) {
@@ -978,13 +1039,6 @@
     // ============================================================
     function cerrarModal(id) {
       document.getElementById(id).classList.remove('active');
-    }
-
-    function mostrarToast(msg) {
-      const toast = document.getElementById('toast');
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3500);
     }
 
     // ============================================================
