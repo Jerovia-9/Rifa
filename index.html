@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rifa · Asamblea Jerovia N°9</title>
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== RESET Y BASE ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
@@ -101,38 +99,36 @@
       transition: 0.2s;
     }
     .btn-sutil:hover { color: #b82a6e; }
-
-    /* ===== PREMIOS (más profesionales) ===== */
     .premios-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
       gap: 16px;
+      justify-content: center;
       margin: 1.5rem 0 2rem;
     }
     .premio-card {
       background: #faf8f9;
-      border-radius: 12px;
-      padding: 1.2rem 1.2rem;
+      border-radius: 16px;
+      padding: 1.2rem 1.8rem;
+      min-width: 150px;
       text-align: center;
       border: 1px solid #f0ecee;
       transition: 0.2s;
     }
     .premio-card:hover { border-color: #d4c8ce; }
+    .premio-card .icono { font-size: 1.8rem; margin-bottom: 0.3rem; }
     .premio-card .nombre {
       font-family: 'Playfair Display', serif;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: #2d2d2d;
-      margin-bottom: 4px;
     }
     .premio-card .estado {
       font-size: 0.7rem;
       color: #b0a8ac;
-      font-weight: 400;
+      margin-top: 4px;
     }
     .premio-card .estado.ganado { color: #b82a6e; font-weight: 500; }
-
-    /* ===== MODALES ===== */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -233,8 +229,6 @@
       margin: 0.3rem 0 0.8rem;
     }
     .total-text strong { color: #b82a6e; font-size: 1.4rem; }
-
-    /* ===== RULETA ===== */
     #ruleta-container {
       display: none;
       flex-direction: column;
@@ -242,33 +236,14 @@
       margin: 1.5rem 0;
     }
     #ruleta-container.active { display: flex; }
-    #ruleta-canvas-wrapper {
-      position: relative;
+    #ruleta-canvas {
       width: 100%;
       max-width: 460px;
       aspect-ratio: 1/1;
-    }
-    #ruleta-canvas-wrapper canvas {
-      width: 100% !important;
-      height: 100% !important;
       border-radius: 50%;
       box-shadow: 0 4px 30px rgba(0,0,0,0.06);
       background: white;
       border: 1px solid #f0ecee;
-      display: block;
-    }
-    #ruleta-indicator {
-      position: absolute;
-      top: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 5;
-      width: 0;
-      height: 0;
-      border-left: 16px solid transparent;
-      border-right: 16px solid transparent;
-      border-top: 30px solid #b82a6e;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
     }
     .ruleta-info {
       display: flex;
@@ -280,8 +255,6 @@
       color: #7a6a72;
     }
     .ruleta-info .countdown { font-weight: 500; color: #b82a6e; }
-
-    /* ===== RESULTADO ===== */
     #resultado-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -321,53 +294,6 @@
       color: #5a4a52;
       margin-bottom: 1.2rem;
     }
-
-    /* ===== TOAST ===== */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #2d2d2d;
-      color: white;
-      padding: 14px 28px;
-      border-radius: 40px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-      visibility: hidden;
-      opacity: 0;
-      transition: 0.3s;
-      z-index: 9999;
-      max-width: 90%;
-    }
-    .toast.show {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    /* ===== SPINNER ===== */
-    .spinner {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      border: 3px solid #f0ecee;
-      border-radius: 50%;
-      border-top-color: #b82a6e;
-      animation: spin 0.8s ease-in-out infinite;
-      margin-right: 10px;
-      vertical-align: middle;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .cargando-texto {
-      text-align: center;
-      padding: 2rem 0;
-      color: #7a6a72;
-      font-size: 0.95rem;
-    }
-
-    /* ===== FOOTER ===== */
     .footer {
       max-width: 1100px;
       width: 100%;
@@ -393,16 +319,51 @@
     .footer .linea-orden { color: #b0a8ac; }
     .footer .linea-asamblea { color: #b82a6e; font-weight: 500; }
     .footer .linea-jurisdiccion { color: #1a5276; }
-
     @media (max-width: 640px) {
       .container { padding: 1.2rem; }
       header h1 { font-size: 1.8rem; }
       .modal-content { padding: 1.5rem; }
-      .premios-grid { grid-template-columns: 1fr 1fr; }
+      .premio-card { min-width: 120px; padding: 0.8rem 1rem; }
       .cantidad-selector { font-size: 1.3rem; }
       #resultado-overlay .result-box .titulo { font-size: 1.8rem; }
       #resultado-overlay .result-box .nombre-ganador { font-size: 1.4rem; }
     }
+    /* Animación confeti */
+    @keyframes caerConfeti {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+    /* Mensaje de carga */
+    .loading-placeholder {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #b0a8ac;
+      font-size: 1rem;
+    }
+    .loading-placeholder .spinner {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f0ecee;
+      border-top: 4px solid #b82a6e;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    /* Mensaje de agradecimiento */
+    .gracias-mensaje {
+      background: #f0f7f0;
+      border-left: 4px solid #4caf50;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      text-align: center;
+      color: #2d2d2d;
+      font-weight: 500;
+      display: none;
+    }
+    .gracias-mensaje.show { display: block; }
   </style>
 </head>
 <body>
@@ -416,23 +377,27 @@
       <p class="subtitle">Cada rifa · 10.000 Gs · Sorteo en vivo</p>
     </header>
 
-    <!-- PREMIOS -->
-    <div id="premios-container">
-      <div class="premios-grid" id="premios-grid"></div>
+    <!-- Mensaje de agradecimiento (se muestra al volver de WhatsApp) -->
+    <div id="graciasMensaje" class="gracias-mensaje">
+      ✅ ¡Gracias por tu compra! Tu participación ha sido registrada. Te contactaremos para confirmar el pago.
     </div>
 
-    <!-- BOTONES -->
+    <!-- Contenedor de premios (carga inicial) -->
+    <div id="premios-container">
+      <div id="loadingPlaceholder" class="loading-placeholder">
+        <div class="spinner"></div>
+        <p>Cargando datos de la rifa...</p>
+      </div>
+      <div class="premios-grid" id="premios-grid" style="display:none;"></div>
+    </div>
+
     <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin:1.5rem 0;">
       <button class="btn-primary" onclick="iniciarCompra()">Comprar rifa</button>
       <button class="btn-secondary" onclick="mostrarRuleta()">Ver ruleta</button>
     </div>
 
-    <!-- RULETA -->
     <div id="ruleta-container">
-      <div id="ruleta-canvas-wrapper">
-        <canvas id="ruleta-canvas" width="500" height="500"></canvas>
-        <div id="ruleta-indicator"></div>
-      </div>
+      <canvas id="ruleta-canvas" width="500" height="500"></canvas>
       <div class="ruleta-info">
         <span>Participantes: <strong id="participantes-count">0</strong></span>
         <span class="countdown" id="countdown-display">⏳ Cargando...</span>
@@ -442,7 +407,6 @@
 
   </div>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="rainbow-dots">
       <span style="background:#D8303B;"></span>
@@ -541,14 +505,13 @@
     </div>
   </div>
 
-  <!-- TOAST -->
-  <div id="toast" class="toast"></div>
+  <div id="toast" style="position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#2d2d2d; color:white; padding:12px 24px; border-radius:40px; font-weight:500; font-size:0.9rem; box-shadow:0 8px 30px rgba(0,0,0,0.1); visibility:hidden; opacity:0; transition:0.3s; z-index:9999;">Mensaje</div>
 
   <script>
     // ============================================================
     // CONFIGURACIÓN
     // ============================================================
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw108qJ0KEoFILSsLsAFQlzNWN8JcF00IODn9wbQyqEvGWViHRzHDHIjX7vL0buFIHHRg/exec"; // <--- REEMPLAZAR
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw108qJ0KEoFILSsLsAFQlzNWN8JcF00IODn9wbQyqEvGWViHRzHDHIjX7vL0buFIHHRg/exec"; // <--- REEMPLAZAR CON TU URL
     const PRECIO_RIFA = 10000;
 
     let cantidadRifas = 1;
@@ -556,91 +519,67 @@
     let premios = [];
     let datosAdmin = {};
     let listaChicas = [];
-    let ruletaGirando = false;
+    let ruletaNombresConCantidad = [];
     let ganadorActual = null;
     let niñaSeleccionada = '';
-
-    // Colores arcoíris para la ruleta
-    const COLORES_RULETA = [
-      '#D8303B', '#F58634', '#FFE61C', '#00A859',
-      '#00AFEF', '#0065A0', '#727CB6'
-    ];
+    let ruletaGirando = false;
 
     // ============================================================
-    // MOSTRAR TOAST
+    // MOSTRAR MENSAJE DE AGRADECIMIENTO SI VIENE DE WHATSAPP
     // ============================================================
-    function mostrarToast(msg, duracion = 4000) {
-      const toast = document.getElementById('toast');
-      toast.textContent = msg;
-      toast.classList.add('show');
-      clearTimeout(toast._timeout);
-      toast._timeout = setTimeout(() => {
-        toast.classList.remove('show');
-      }, duracion);
-    }
-
-    // ============================================================
-    // SPINNER DE CARGA
-    // ============================================================
-    function mostrarCargando(mostrar) {
-      const grid = document.getElementById('premios-grid');
-      if (mostrar) {
-        grid.innerHTML = `<div class="cargando-texto"><div class="spinner"></div> Cargando rifa...</div>`;
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('gracias') === 'true') {
+        sessionStorage.setItem('mostrarGracias', 'true');
+        // Limpiar URL
+        window.history.replaceState({}, document.title, window.location.pathname);
       }
-    }
+      if (sessionStorage.getItem('mostrarGracias') === 'true') {
+        document.getElementById('graciasMensaje').classList.add('show');
+        setTimeout(() => {
+          document.getElementById('graciasMensaje').classList.remove('show');
+          sessionStorage.removeItem('mostrarGracias');
+        }, 6000);
+      }
+    })();
 
     // ============================================================
     // INICIALIZACIÓN
     // ============================================================
     async function init() {
-      mostrarCargando(true);
       try {
         const resp = await fetch(SCRIPT_URL);
-        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const data = await resp.json();
-        
         participantes = data.participantes || [];
         premios = data.admin?.premios || [];
         datosAdmin = data.admin || {};
         listaChicas = data.chicas || [];
 
-        // DEBUG: ver participantes con pagado = SI
-        console.log("👥 Participantes cargados:", participantes);
-        const pagados = participantes.filter(p => p.pagado === 'SI');
-        console.log("✅ Pagados (SI):", pagados);
+        // Ocultar loading y mostrar grid
+        document.getElementById('loadingPlaceholder').style.display = 'none';
+        document.getElementById('premios-grid').style.display = 'flex';
 
         const grid = document.getElementById('premios-grid');
         grid.innerHTML = '';
-        if (premios.length === 0) {
-          grid.innerHTML = '<p style="color:#b0a8ac; text-align:center; width:100%;">No hay premios cargados.</p>';
-        } else {
-          premios.forEach(p => {
-            grid.innerHTML += `
-              <div class="premio-card">
-                <div class="nombre">${p.nombre}</div>
-                <div class="estado ${p.ganador ? 'ganado' : ''}">${p.ganador ? '🏆 ' + p.ganador : 'Disponible'}</div>
-              </div>
-            `;
-          });
-        }
+        premios.forEach(p => {
+          grid.innerHTML += `
+            <div class="premio-card">
+              <div class="icono">🎁</div>
+              <div class="nombre">${p.nombre}</div>
+              <div class="estado ${p.ganador ? 'ganado' : ''}">${p.ganador ? '🏆 ' + p.ganador : 'Disponible'}</div>
+            </div>
+          `;
+        });
 
         document.getElementById('participantes-count').textContent = participantes.filter(p => p.pagado === 'SI').length;
 
         if (datosAdmin.fecha) {
           iniciarCuentaRegresiva(datosAdmin.fecha);
         }
-
-        // Mostrar mensaje de agradecimiento si volvemos de WhatsApp
-        if (localStorage.getItem('gracias_compra') === 'true') {
-          localStorage.removeItem('gracias_compra');
-          mostrarToast('¡Gracias por tu compra! Tu rifa será registrada al confirmar el pago.', 5000);
-        }
-
       } catch (e) {
         console.error(e);
-        mostrarToast('Error al cargar datos. Recarga la página.');
-      } finally {
-        mostrarCargando(false);
+        document.getElementById('loadingPlaceholder').innerHTML = '❌ Error al cargar datos. Recarga la página.';
+        mostrarToast('Error al cargar datos.');
       }
     }
 
@@ -685,7 +624,7 @@
 
       ctx.clearRect(0, 0, w, h);
 
-      // Obtener nombres de participantes con pagado = SI
+      // Construir lista de nombres con repeticiones según cantidad
       const nombres = [];
       participantes.forEach(p => {
         if (p.pagado === 'SI') {
@@ -701,21 +640,21 @@
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText('Sin participantes aún', cx, cy);
-        window.ruletaNombres = [];
-        window.ruletaAngulo = 0;
+        ruletaNombresConCantidad = [];
         return;
       }
 
-      // Orden consistente
+      ruletaNombresConCantidad = nombres.map(n => ({ nombre: n, eliminado: false }));
+
       const seed = participantes.length;
-      const orden = nombres.map((n, i) => ({ n, i }));
-      orden.sort((a,b) => (a.i * seed + a.n.length) - (b.i * seed + b.n.length));
-      const nombresOrdenados = orden.map(o => o.n);
+      const orden = ruletaNombresConCantidad.map((item, i) => ({ ...item, idx: i }));
+      orden.sort((a,b) => (a.idx * seed + a.nombre.length) - (b.idx * seed + b.nombre.length));
+      const nombresOrdenados = orden.map(o => o.nombre);
 
       const total = nombresOrdenados.length;
       const angulo = (2 * Math.PI) / total;
+      const coloresArcoiris = ['#D8303B', '#F58634', '#FFE61C', '#00A859', '#00AFEF', '#0065A0', '#727CB6'];
 
-      // Dibujar segmentos con colores arcoíris
       for (let i = 0; i < total; i++) {
         const start = i * angulo;
         const end = start + angulo;
@@ -723,15 +662,12 @@
         ctx.moveTo(cx, cy);
         ctx.arc(cx, cy, r, start, end);
         ctx.closePath();
-        // Color arcoíris
-        const colorIdx = i % COLORES_RULETA.length;
-        ctx.fillStyle = COLORES_RULETA[colorIdx];
+        ctx.fillStyle = coloresArcoiris[i % coloresArcoiris.length];
         ctx.fill();
-        ctx.strokeStyle = 'white';
+        ctx.strokeStyle = '#fff';
         ctx.lineWidth = 1.5;
         ctx.stroke();
 
-        // Texto
         ctx.save();
         ctx.translate(cx, cy);
         ctx.rotate(start + angulo/2);
@@ -742,17 +678,28 @@
         ctx.shadowColor = 'rgba(0,0,0,0.3)';
         ctx.shadowBlur = 4;
         ctx.fillText(nombresOrdenados[i], r * 0.65, 0);
+        ctx.shadowBlur = 0;
         ctx.restore();
       }
 
-      // Círculo central
       ctx.beginPath();
-      ctx.arc(cx, cy, 20, 0, 2 * Math.PI);
+      ctx.arc(cx, cy, 18, 0, 2 * Math.PI);
       ctx.fillStyle = '#b82a6e';
       ctx.fill();
       ctx.strokeStyle = 'white';
       ctx.lineWidth = 2;
       ctx.stroke();
+
+      // Triángulo fijo en la parte superior
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - r - 12);
+      ctx.lineTo(cx - 14, cy - r - 30);
+      ctx.lineTo(cx + 14, cy - r - 30);
+      ctx.closePath();
+      ctx.fillStyle = '#b82a6e';
+      ctx.fill();
+      ctx.shadowColor = 'rgba(184, 42, 110, 0.4)';
+      ctx.shadowBlur = 10;
 
       window.ruletaNombres = nombresOrdenados;
       window.ruletaAngulo = 0;
@@ -769,8 +716,8 @@
 
     function validarContraseña() {
       const pass = document.getElementById('input-password').value.trim();
-      // La contraseña está en la hoja Admin, fila 2, columna C (índice 2)
-      if (pass === datosAdmin.contraseña) {
+      const passCorrecta = datosAdmin.contraseña || 'admin123';
+      if (pass === passCorrecta) {
         cerrarModal('modal-password');
         mostrarPremiosParaSortear();
       } else {
@@ -781,10 +728,8 @@
     function mostrarPremiosParaSortear() {
       const container = document.getElementById('lista-premios');
       container.innerHTML = '';
-      let hayDisponibles = false;
       premios.forEach(p => {
         if (!p.ganador) {
-          hayDisponibles = true;
           const btn = document.createElement('button');
           btn.className = 'btn-secondary';
           btn.textContent = p.nombre;
@@ -793,60 +738,48 @@
           container.appendChild(btn);
         }
       });
-      if (!hayDisponibles) {
+      if (container.children.length === 0) {
         container.innerHTML = '<p style="color:#b0a8ac;">Todos los premios ya tienen ganador.</p>';
       }
       document.getElementById('modal-premios').classList.add('active');
     }
 
-    async function sortearPremio(nombrePremio) {
+    function sortearPremio(nombrePremio) {
       cerrarModal('modal-premios');
       if (ruletaGirando) return;
       ruletaGirando = true;
 
-      // Obtener nombres de participantes con pagado = SI
-      const nombres = [];
-      participantes.forEach(p => {
-        if (p.pagado === 'SI') {
-          for (let i = 0; i < (p.cantidad || 1); i++) {
-            nombres.push(p.nombre);
-          }
-        }
-      });
-
-      if (nombres.length === 0) {
-        mostrarToast('No hay participantes para sortear');
+      const disponibles = ruletaNombresConCantidad.filter(item => !item.eliminado);
+      if (disponibles.length === 0) {
+        mostrarToast('No hay participantes disponibles');
         ruletaGirando = false;
         return;
       }
 
-      // Elegir ganador
-      const idx = Math.floor(Math.random() * nombres.length);
-      ganadorActual = nombres[idx];
+      const idxGanador = Math.floor(Math.random() * disponibles.length);
+      const ganadorNombre = disponibles[idxGanador].nombre;
 
-      // Animación de la ruleta
-      const canvas = document.getElementById('ruleta-canvas');
-      const ctx = canvas.getContext('2d');
-      const w = canvas.width, h = canvas.height;
-      const cx = w/2, cy = h/2, r = Math.min(w,h) * 0.42;
-
-      const total = window.ruletaNombres.length;
-      const angulo = (2 * Math.PI) / total;
-      const posGanador = window.ruletaNombres.indexOf(ganadorActual);
+      const posGanador = window.ruletaNombres.indexOf(ganadorNombre);
       if (posGanador === -1) {
         ruletaGirando = false;
         mostrarToast('Error al encontrar al ganador');
         return;
       }
 
-      // Ángulo objetivo: queremos que el nombre quede arriba (apuntando al triángulo)
-      // El triángulo está en la parte superior (ángulo -90° o 270°)
+      const total = window.ruletaNombres.length;
+      const angulo = (2 * Math.PI) / total;
       const anguloObjetivo = - (posGanador * angulo + angulo/2) + Math.PI/2;
-      const vueltas = 5 + Math.floor(Math.random() * 3);
+      const vueltas = 6 + Math.floor(Math.random() * 3);
       const anguloFinal = anguloObjetivo + vueltas * 2 * Math.PI;
 
+      const canvas = document.getElementById('ruleta-canvas');
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width, h = canvas.height;
+      const cx = w/2, cy = h/2, r = Math.min(w,h) * 0.42;
+      const coloresArcoiris = ['#D8303B', '#F58634', '#FFE61C', '#00A859', '#00AFEF', '#0065A0', '#727CB6'];
+
       let start = null;
-      const duration = 4000 + Math.random() * 1500;
+      const duration = 5000 + Math.random() * 1500;
       const inicioAngulo = window.ruletaAngulo || 0;
 
       function animar(timestamp) {
@@ -855,12 +788,14 @@
         const eased = 1 - Math.pow(1 - progress, 3);
         const anguloActual = inicioAngulo + (anguloFinal - inicioAngulo) * eased;
 
-        // Dibujar ruleta rotada
         ctx.clearRect(0, 0, w, h);
         ctx.save();
         ctx.translate(cx, cy);
         ctx.rotate(anguloActual);
         ctx.translate(-cx, -cy);
+
+        const total = window.ruletaNombres.length;
+        const angulo = (2 * Math.PI) / total;
 
         for (let i = 0; i < total; i++) {
           const startA = i * angulo;
@@ -869,10 +804,9 @@
           ctx.moveTo(cx, cy);
           ctx.arc(cx, cy, r, startA, endA);
           ctx.closePath();
-          const colorIdx = i % COLORES_RULETA.length;
-          ctx.fillStyle = COLORES_RULETA[colorIdx];
+          ctx.fillStyle = coloresArcoiris[i % coloresArcoiris.length];
           ctx.fill();
-          ctx.strokeStyle = 'white';
+          ctx.strokeStyle = '#fff';
           ctx.lineWidth = 1.5;
           ctx.stroke();
 
@@ -886,27 +820,61 @@
           ctx.shadowColor = 'rgba(0,0,0,0.3)';
           ctx.shadowBlur = 4;
           ctx.fillText(window.ruletaNombres[i], r * 0.65, 0);
+          ctx.shadowBlur = 0;
           ctx.restore();
         }
 
-        // Círculo central
+        ctx.restore();
+
         ctx.beginPath();
-        ctx.arc(cx, cy, 20, 0, 2 * Math.PI);
+        ctx.arc(cx, cy, 18, 0, 2 * Math.PI);
         ctx.fillStyle = '#b82a6e';
         ctx.fill();
         ctx.strokeStyle = 'white';
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        ctx.restore();
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - r - 12);
+        ctx.lineTo(cx - 14, cy - r - 30);
+        ctx.lineTo(cx + 14, cy - r - 30);
+        ctx.closePath();
+        ctx.fillStyle = '#b82a6e';
+        ctx.fill();
+        ctx.shadowColor = 'rgba(184, 42, 110, 0.4)';
+        ctx.shadowBlur = 10;
 
         if (progress < 1) {
           requestAnimationFrame(animar);
         } else {
           window.ruletaAngulo = anguloFinal;
           ruletaGirando = false;
-          mostrarGanador(ganadorActual, nombrePremio);
-          guardarGanador(ganadorActual, nombrePremio);
+
+          // Reducir cantidad del ganador
+          let encontrado = false;
+          for (let i = 0; i < ruletaNombresConCantidad.length; i++) {
+            if (ruletaNombresConCantidad[i].nombre === ganadorNombre && !ruletaNombresConCantidad[i].eliminado) {
+              const participante = participantes.find(p => p.nombre === ganadorNombre && p.pagado === 'SI');
+              if (participante) {
+                participante.cantidad = Math.max(0, (participante.cantidad || 1) - 1);
+                if (participante.cantidad === 0) {
+                  ruletaNombresConCantidad[i].eliminado = true;
+                }
+              } else {
+                ruletaNombresConCantidad[i].eliminado = true;
+              }
+              encontrado = true;
+              break;
+            }
+          }
+
+          setTimeout(() => {
+            mostrarGanador(ganadorNombre, nombrePremio);
+            guardarGanador(ganadorNombre, nombrePremio);
+            setTimeout(() => {
+              dibujarRuleta();
+            }, 300);
+          }, 1500);
         }
       }
 
@@ -917,6 +885,7 @@
       document.getElementById('ganador-nombre').textContent = nombre;
       document.getElementById('ganador-premio').innerHTML = `ha ganado <strong>${premio}</strong>`;
       document.getElementById('resultado-overlay').classList.add('active');
+      lanzarConfeti();
     }
 
     function cerrarResultado() {
@@ -929,6 +898,29 @@
         const url = `${SCRIPT_URL}?action=guardarGanador&nombre=${encodeURIComponent(nombre)}&premio=${encodeURIComponent(premio)}`;
         await fetch(url);
       } catch (e) { console.error(e); }
+    }
+
+    // ============================================================
+    // CONFETI
+    // ============================================================
+    function lanzarConfeti() {
+      const colores = ['#D8303B', '#F58634', '#FFE61C', '#00A859', '#00AFEF', '#0065A0', '#727CB6', '#b82a6e', '#f8bbd0'];
+      for (let i = 0; i < 80; i++) {
+        const confeti = document.createElement('div');
+        confeti.style.position = 'fixed';
+        confeti.style.width = (Math.random() * 8 + 4) + 'px';
+        confeti.style.height = (Math.random() * 8 + 4) + 'px';
+        confeti.style.background = colores[Math.floor(Math.random() * colores.length)];
+        confeti.style.left = Math.random() * 100 + 'vw';
+        confeti.style.top = '-20px';
+        confeti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        confeti.style.zIndex = '9999';
+        confeti.style.pointerEvents = 'none';
+        confeti.style.animation = `caerConfeti ${2 + Math.random() * 3}s linear forwards`;
+        confeti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(confeti);
+        setTimeout(() => confeti.remove(), 5000);
+      }
     }
 
     // ============================================================
@@ -1019,12 +1011,12 @@
         `Monto a pagar: ${total.toLocaleString('es-PY')} Gs\n` +
         `Alias: ${alias}`
       );
-      
-      // Guardar bandera para mostrar agradecimiento al volver
-      localStorage.setItem('gracias_compra', 'true');
-      
       window.open(`https://wa.me/${datosAdmin.telefono || '595981614237'}?text=${mensaje}`, '_blank');
-      mostrarToast('¡Redirigiendo a WhatsApp!', 3000);
+      mostrarToast('¡Gracias por tu compra!');
+      // Marcar que volvemos de WhatsApp
+      setTimeout(() => {
+        window.location.href = window.location.pathname + '?gracias=true';
+      }, 500);
     }
 
     async function guardarCompra(nombre, ci, celular, total) {
@@ -1039,6 +1031,17 @@
     // ============================================================
     function cerrarModal(id) {
       document.getElementById(id).classList.remove('active');
+    }
+
+    function mostrarToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.style.visibility = 'visible';
+      toast.style.opacity = '1';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.style.visibility = 'hidden', 300);
+      }, 3500);
     }
 
     // ============================================================
