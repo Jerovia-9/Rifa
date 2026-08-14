@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rifa Virtual · Asamblea Jerovia N°9</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET Y BASE ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(145deg, #fdf6f9 0%, #fff0f5 100%);
+      min-height: 100vh;
+      color: #2d2d2d;
+      padding: 0;
+      padding-bottom: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ===== ARCOÍRIS ===== */
+    .rainbow-bar {
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, #D8303B, #F58634, #FFE61C, #00A859, #00AFEF, #0065A0, #727CB6);
+      background-size: 300% 100%;
+      animation: arcoirisMove 6s ease-in-out infinite alternate;
+      box-shadow: 0 4px 20px rgba(216,48,59,0.2);
+    }
+    @keyframes arcoirisMove { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+
+    /* ===== CONTENEDOR PRINCIPAL ===== */
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      padding: 1.5rem 1.5rem 1rem;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 30px 60px -20px rgba(214,51,132,0.25), 0 10px 30px -10px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      text-align: center;
+      padding: 1rem 0 0.5rem;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: #1a1a1a;
+    }
+    header h1 span {
+      background: linear-gradient(135deg, #d63384, #b82a6e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    header .subtitle {
+      font-weight: 300;
+      color: #7a6a72;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    /* ===== BOTONES PRINCIPALES ===== */
+    .btn-primary {
+      background: linear-gradient(135deg, #d63384, #b82a6e);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.25s;
+      box-shadow: 0 8px 24px rgba(214,51,132,0.3);
+      letter-spacing: 0.5px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 32px rgba(214,51,132,0.4);
+    }
+    .btn-secondary {
+      background: white;
+      color: #d63384;
+      border: 2px solid #d63384;
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .btn-secondary:hover {
+      background: #d63384;
+      color: white;
+    }
+    .btn-sutil {
+      background: none;
+      border: none;
+      color: #b8a4ae;
+      font-size: 0.75rem;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-sutil:hover { color: #d63384; }
+
+    /* ===== PREMIOS ===== */
+    .premios-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .premio-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      min-width: 180px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      border: 1px solid #f0dce4;
+    }
+    .premio-card .icono { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .premio-card .nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #d63384;
+    }
+
+    /* ===== MODALES ===== */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-content {
+      background: white;
+      padding: 2rem 2rem 1.8rem;
+      border-radius: 30px;
+      max-width: 480px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+      border-top: 6px solid #d63384;
+      text-align: center;
+    }
+    .modal-content h2 {
+      font-family: 'Playfair Display', serif;
+      color: #d63384;
+      margin-bottom: 0.5rem;
+    }
+    .modal-content p { color: #5a4a52; font-size: 0.95rem; margin-bottom: 1.2rem; }
+    .modal-content .btn-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ===== SELECTOR DE CANTIDAD ===== */
+    .cantidad-selector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #d63384;
+      margin: 1rem 0;
+    }
+    .cantidad-selector button {
+      background: #f5e8ee;
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #d63384;
+    }
+    .cantidad-selector button:hover { background: #d63384; color: white; }
+    .total-text { font-size: 1.2rem; color: #5a4a52; margin: 0.5rem 0; }
+    .total-text strong { color: #d63384; font-size: 1.5rem; }
+
+    /* ===== RULETA ===== */
+    #ruleta-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem 0;
+    }
+    #ruleta-container.active { display: flex; }
+    #ruleta-canvas {
+      width: 100%;
+      max-width: 500px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      box-shadow: 0 0 40px rgba(214,51,132,0.15);
+      background: white;
+    }
+    .ruleta-info {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 500px;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #5a4a52;
+    }
+    .ruleta-info .countdown {
+      font-weight: 600;
+      color: #d63384;
+    }
+
+    /* ===== RESULTADO ===== */
+    #resultado-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(26,11,20,0.92);
+      backdrop-filter: blur(10px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      text-align: center;
+      padding: 20px;
+    }
+    #resultado-overlay.active { display: flex; }
+    #resultado-overlay .result-box {
+      background: white;
+      padding: 3rem 2.5rem;
+      border-radius: 40px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 0 60px rgba(255,126,179,0.2);
+      border-top: 8px solid #d63384;
+    }
+    #resultado-overlay .result-box .titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: #d63384;
+      margin-bottom: 0.5rem;
+    }
+    #resultado-overlay .result-box .nombre-ganador {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #1a1a1a;
+      margin: 0.5rem 0;
+    }
+    #resultado-overlay .result-box .premio-ganado {
+      font-size: 1.2rem;
+      color: #5a4a52;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      max-width: 1100px;
+      width: 100%;
+      margin-top: 2rem;
+      padding: 1.2rem 1.5rem 0.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #b8a4ae;
+      border-top: 1px solid rgba(214,51,132,0.08);
+    }
+    .footer .rainbow-dots {
+      display: inline-flex;
+      gap: 6px;
+      margin-bottom: 0.5rem;
+    }
+    .footer .rainbow-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .footer .linea-orden { color: #7a6a72; }
+    .footer .linea-asamblea { color: #d63384; font-weight: 600; }
+    .footer .linea-jurisdiccion { color: #1a5276; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      header h1 { font-size: 2rem; }
+      .modal-content { padding: 1.5rem; }
+      .premio-card { min-width: 140px; padding: 1rem; }
+      .cantidad-selector { font-size: 1.4rem; }
+      #resultado-overlay .result-box .titulo { font-size: 2rem; }
+      #resultado-overlay .result-box .nombre-ganador { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ARCOÍRIS -->
+  <div class="rainbow-bar"></div>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <div class="container">
+
+    <!-- HEADER -->
+    <header>
+      <h1>🎟️ <span>Rifa Jerovia</span></h1>
+      <p class="subtitle">Sorteamos grandes premios · Cada rifa cuesta <strong>10.000 Gs</strong></p>
+    </header>
+
+    <!-- PREMIOS -->
+    <div id="premios-container">
+      <div class="premios-grid" id="premios-grid">
+        <!-- Se llena desde el script -->
+      </div>
+    </div>
+
+    <!-- BOTONES PRINCIPALES -->
+    <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin:1.5rem 0;">
+      <button class="btn-primary" onclick="iniciarCompra()">🎯 Comprar ahora</button>
+      <button class="btn-secondary" onclick="mostrarRuleta()">🎡 Mirar ruleta</button>
+    </div>
+
+    <!-- RULETA (oculta inicialmente) -->
+    <div id="ruleta-container">
+      <canvas id="ruleta-canvas" width="500" height="500"></canvas>
+      <div class="ruleta-info">
+        <span>Participantes: <strong id="participantes-count">0</strong></span>
+        <span class="countdown" id="countdown-display">⏳ Cargando...</span>
+      </div>
+      <!-- Botón girar (sutil, pide contraseña) -->
+      <button class="btn-sutil" onclick="pedirContraseña()" style="margin-top:12px;">🔐 Girar ruleta (admin)</button>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="rainbow-dots">
+      <span style="background:#D8303B;"></span>
+      <span style="background:#F58634;"></span>
+      <span style="background:#FFE61C;"></span>
+      <span style="background:#00A859;"></span>
+      <span style="background:#00AFEF;"></span>
+      <span style="background:#0065A0;"></span>
+      <span style="background:#727CB6;"></span>
+    </div>
+    <p>
+      <span class="linea-orden">Orden Internacional del Arcoíris para Niñas</span> · 
+      <span class="linea-asamblea">Asamblea Jerovia N°9</span> · 
+      <span class="linea-jurisdiccion">Gran Jurisdicción de Paraguay</span>
+    </p>
+    <p style="opacity:0.5; font-size:0.7rem;">© 2026 · Sol Isabella Volpe</p>
+  </footer>
+
+  <!-- ===== MODALES ===== -->
+
+  <!-- Modal: ¿Aportar a niña específica? -->
+  <div class="modal-overlay" id="modal-aportar">
+    <div class="modal-content">
+      <h2>💖 ¿Aportar a una niña?</h2>
+      <p>¿Quieres que tu aporte vaya a la caja de una niña en específico?</p>
+      <div class="btn-group">
+        <button class="btn-secondary" onclick="seleccionarNiña()">Sí</button>
+        <button class="btn-primary" onclick="seguirCompra()">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Lista de niñas -->
+  <div class="modal-overlay" id="modal-niñas">
+    <div class="modal-content">
+      <h2>👧 Selecciona una niña</h2>
+      <div id="lista-niñas" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:1rem 0;"></div>
+      <button class="btn-sutil" onclick="cerrarModal('modal-niñas'); seguirCompra();">Saltar (fondo general)</button>
+    </div>
+  </div>
+
+  <!-- Modal: Cantidad -->
+  <div class="modal-overlay" id="modal-cantidad">
+    <div class="modal-content">
+      <h2>🎫 ¿Cuántas rifas?</h2>
+      <div class="cantidad-selector">
+        <button onclick="cambiarCantidad(-1)">−</button>
+        <span id="cantidad-display">1</span>
+        <button onclick="cambiarCantidad(1)">+</button>
+      </div>
+      <div class="total-text">Total: <strong id="total-display">10.000</strong> Gs</div>
+      <button class="btn-primary" onclick="confirmarCompra()" style="margin-top:1rem;">Comprar</button>
+    </div>
+  </div>
+
+  <!-- Modal: Contraseña para girar -->
+  <div class="modal-overlay" id="modal-password">
+    <div class="modal-content">
+      <h2>🔐 Contraseña</h2>
+      <p>Ingresa la contraseña para girar la ruleta</p>
+      <input type="password" id="input-password" placeholder="Contraseña" style="width:100%; padding:12px; border-radius:60px; border:2px solid #f0dce4; margin:1rem 0; font-size:1rem; text-align:center;">
+      <div class="btn-group">
+        <button class="btn-secondary" onclick="cerrarModal('modal-password')">Cancelar</button>
+        <button class="btn-primary" onclick="validarContraseña()">Entrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Seleccionar premio a sortear -->
+  <div class="modal-overlay" id="modal-premios">
+    <div class="modal-content">
+      <h2>🎁 Elegir premio</h2>
+      <p>Selecciona el premio que vas a sortear</p>
+      <div id="lista-premios" style="display:flex; flex-direction:column; gap:8px; margin:1rem 0;"></div>
+      <button class="btn-sutil" onclick="cerrarModal('modal-premios')">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- RESULTADO DEL SORTEO -->
+  <div id="resultado-overlay">
+    <div class="result-box">
+      <div class="titulo">🎉 ¡FELICIDADES!</div>
+      <div class="nombre-ganador" id="ganador-nombre">Fulano Detal</div>
+      <div class="premio-ganado" id="ganador-premio">has ganado <strong>Un gran premio</strong></div>
+      <button class="btn-primary" onclick="cerrarResultado()">Continuar</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" style="position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#d63384; color:white; padding:14px 28px; border-radius:60px; font-weight:600; box-shadow:0 8px 30px rgba(214,51,132,0.3); visibility:hidden; opacity:0; transition:0.3s; z-index:9999;">Mensaje</div>
+
+  <script>
+    // ============================================================
+    // CONFIGURACIÓN
+    // ============================================================
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw108qJ0KEoFILSsLsAFQlzNWN8JcF00IODn9wbQyqEvGWViHRzHDHIjX7vL0buFIHHRg/exec"; // <--- REEMPLAZAR
+    const PRECIO_RIFA = 10000;
+
+    let cantidadRifas = 1;
+    let participantes = [];
+    let premios = [];
+    let datosAdmin = {};
+    let listaChicas = [];
+    let ruletaGirando = false;
+    let ganadorActual = null;
+    let niñaSeleccionada = '';
+
+    // ============================================================
+    // INICIALIZACIÓN
+    // ============================================================
+    async function init() {
+      try {
+        const resp = await fetch(SCRIPT_URL + "?action=rifa");
+        const data = await resp.json();
+        participantes = data.participantes || [];
+        premios = data.admin?.premios || [];
+        datosAdmin = data.admin || {};
+        listaChicas = data.chicas || [];
+
+        // Mostrar premios
+        const grid = document.getElementById('premios-grid');
+        grid.innerHTML = '';
+        premios.forEach(p => {
+          grid.innerHTML += `
+            <div class="premio-card">
+              <div class="icono">🎁</div>
+              <div class="nombre">${p.nombre}</div>
+              <div style="font-size:0.8rem; color:#b8a4ae; margin-top:4px;">${p.ganador ? '🏆 ' + p.ganador : 'Disponible'}</div>
+            </div>
+          `;
+        });
+
+        // Actualizar contador de participantes
+        document.getElementById('participantes-count').textContent = participantes.filter(p => p.pagado === 'SI').length;
+
+        // Iniciar cuenta regresiva
+        if (datosAdmin.fecha) {
+          iniciarCuentaRegresiva(datosAdmin.fecha);
+        }
+
+      } catch (e) {
+        console.error(e);
+        mostrarToast('Error al cargar datos. Recarga la página.');
+      }
+    }
+
+    // ============================================================
+    // CUENTA REGRESIVA
+    // ============================================================
+    function iniciarCuentaRegresiva(fechaObj) {
+      const fechaSorteo = new Date(fechaObj);
+      const display = document.getElementById('countdown-display');
+      const interval = setInterval(() => {
+        const ahora = new Date();
+        const diff = fechaSorteo - ahora;
+        if (diff <= 0) {
+          display.textContent = '🎉 ¡Sorteo en curso!';
+          clearInterval(interval);
+          return;
+        }
+        const dias = Math.floor(diff / (1000*60*60*24));
+        const horas = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+        const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+        const segs = Math.floor((diff % (1000*60)) / 1000);
+        display.textContent = `⏳ ${dias}d ${horas}h ${mins}m ${segs}s`;
+      }, 1000);
+    }
+
+    // ============================================================
+    // RULETA
+    // ============================================================
+    function mostrarRuleta() {
+      const container = document.getElementById('ruleta-container');
+      container.classList.toggle('active');
+      if (container.classList.contains('active')) {
+        dibujarRuleta();
+      }
+    }
+
+    function dibujarRuleta() {
+      const canvas = document.getElementById('ruleta-canvas');
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width, h = canvas.height;
+      const cx = w/2, cy = h/2, r = Math.min(w,h) * 0.42;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Lista de nombres (solo los que pagaron)
+      const nombres = [];
+      participantes.forEach(p => {
+        if (p.pagado === 'SI') {
+          for (let i = 0; i < (p.cantidad || 1); i++) {
+            nombres.push(p.nombre);
+          }
+        }
+      });
+
+      if (nombres.length === 0) {
+        ctx.font = '20px Montserrat';
+        ctx.fillStyle = '#b8a4ae';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('Sin participantes aún', cx, cy);
+        return;
+      }
+
+      // Orden consistente (usando una semilla fija: la longitud de participantes)
+      const seed = participantes.length;
+      const orden = nombres.map((n, i) => ({ n, i }));
+      orden.sort((a,b) => (a.i * seed + a.n.length) - (b.i * seed + b.n.length));
+      const nombresOrdenados = orden.map(o => o.n);
+
+      const total = nombresOrdenados.length;
+      const angulo = (2 * Math.PI) / total;
+
+      for (let i = 0; i < total; i++) {
+        const start = i * angulo;
+        const end = start + angulo;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, r, start, end);
+        ctx.closePath();
+        ctx.fillStyle = i % 2 === 0 ? '#fce4ec' : '#f8bbd0';
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Texto
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(start + angulo/2);
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.font = '12px Montserrat';
+        ctx.fillStyle = '#2d2d2d';
+        ctx.fillText(nombresOrdenados[i], r * 0.65, 0);
+        ctx.restore();
+      }
+
+      // Círculo central
+      ctx.beginPath();
+      ctx.arc(cx, cy, 20, 0, 2 * Math.PI);
+      ctx.fillStyle = '#d63384';
+      ctx.fill();
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      // Flecha indicadora
+      ctx.beginPath();
+      ctx.moveTo(cx + r + 10, cy);
+      ctx.lineTo(cx + r + 30, cy - 10);
+      ctx.lineTo(cx + r + 30, cy + 10);
+      ctx.closePath();
+      ctx.fillStyle = '#d63384';
+      ctx.fill();
+
+      // Guardar estado para animación
+      window.ruletaNombres = nombresOrdenados;
+      window.ruletaAngulo = 0;
+    }
+
+    // ============================================================
+    // GIRAR RULETA (ADMIN)
+    // ============================================================
+    function pedirContraseña() {
+      document.getElementById('modal-password').classList.add('active');
+      document.getElementById('input-password').value = '';
+      document.getElementById('input-password').focus();
+    }
+
+    function validarContraseña() {
+      const pass = document.getElementById('input-password').value.trim();
+      if (pass === datosAdmin.contraseña) {
+        cerrarModal('modal-password');
+        mostrarPremiosParaSortear();
+      } else {
+        mostrarToast('Contraseña incorrecta');
+      }
+    }
+
+    function mostrarPremiosParaSortear() {
+      const container = document.getElementById('lista-premios');
+      container.innerHTML = '';
+      premios.forEach(p => {
+        if (!p.ganador) {
+          const btn = document.createElement('button');
+          btn.className = 'btn-secondary';
+          btn.textContent = p.nombre;
+          btn.style.width = '100%';
+          btn.onclick = () => sortearPremio(p.nombre);
+          container.appendChild(btn);
+        }
+      });
+      if (container.children.length === 0) {
+        container.innerHTML = '<p style="color:#b8a4ae;">¡Todos los premios ya tienen ganador!</p>';
+      }
+      document.getElementById('modal-premios').classList.add('active');
+    }
+
+    async function sortearPremio(nombrePremio) {
+      cerrarModal('modal-premios');
+      if (ruletaGirando) return;
+      ruletaGirando = true;
+
+      // Obtener lista de nombres (pagados)
+      const nombres = [];
+      participantes.forEach(p => {
+        if (p.pagado === 'SI') {
+          for (let i = 0; i < (p.cantidad || 1); i++) {
+            nombres.push(p.nombre);
+          }
+        }
+      });
+
+      if (nombres.length === 0) {
+        mostrarToast('No hay participantes para sortear');
+        ruletaGirando = false;
+        return;
+      }
+
+      // Elegir ganador
+      const idx = Math.floor(Math.random() * nombres.length);
+      ganadorActual = nombres[idx];
+
+      // Animación de la ruleta
+      const canvas = document.getElementById('ruleta-canvas');
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width, h = canvas.height;
+      const cx = w/2, cy = h/2, r = Math.min(w,h) * 0.42;
+
+      const total = window.ruletaNombres.length;
+      const angulo = (2 * Math.PI) / total;
+      const posGanador = window.ruletaNombres.indexOf(ganadorActual);
+      if (posGanador === -1) {
+        ruletaGirando = false;
+        mostrarToast('Error al encontrar al ganador');
+        return;
+      }
+
+      const anguloObjetivo = - (posGanador * angulo + angulo/2) + Math.PI/2;
+      const vueltas = 5 + Math.floor(Math.random() * 3);
+      const anguloFinal = anguloObjetivo + vueltas * 2 * Math.PI;
+
+      let start = null;
+      const duration = 4000 + Math.random() * 1500;
+      const inicioAngulo = window.ruletaAngulo || 0;
+
+      function animar(timestamp) {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const anguloActual = inicioAngulo + (anguloFinal - inicioAngulo) * eased;
+
+        ctx.clearRect(0, 0, w, h);
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(anguloActual);
+        ctx.translate(-cx, -cy);
+
+        for (let i = 0; i < total; i++) {
+          const startA = i * angulo;
+          const endA = startA + angulo;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.arc(cx, cy, r, startA, endA);
+          ctx.closePath();
+          ctx.fillStyle = i % 2 === 0 ? '#fce4ec' : '#f8bbd0';
+          ctx.fill();
+          ctx.strokeStyle = '#fff';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+
+          ctx.save();
+          ctx.translate(cx, cy);
+          ctx.rotate(startA + angulo/2);
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.font = '12px Montserrat';
+          ctx.fillStyle = '#2d2d2d';
+          ctx.fillText(window.ruletaNombres[i], r * 0.65, 0);
+          ctx.restore();
+        }
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, 20, 0, 2 * Math.PI);
+        ctx.fillStyle = '#d63384';
+        ctx.fill();
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(cx + r + 10, cy);
+        ctx.lineTo(cx + r + 30, cy - 10);
+        ctx.lineTo(cx + r + 30, cy + 10);
+        ctx.closePath();
+        ctx.fillStyle = '#d63384';
+        ctx.fill();
+
+        ctx.restore();
+
+        if (progress < 1) {
+          requestAnimationFrame(animar);
+        } else {
+          window.ruletaAngulo = anguloFinal;
+          ruletaGirando = false;
+          mostrarGanador(ganadorActual, nombrePremio);
+          guardarGanador(ganadorActual, nombrePremio);
+        }
+      }
+
+      requestAnimationFrame(animar);
+    }
+
+    function mostrarGanador(nombre, premio) {
+      document.getElementById('ganador-nombre').textContent = nombre;
+      document.getElementById('ganador-premio').innerHTML = `ha ganado <strong>${premio}</strong>`;
+      document.getElementById('resultado-overlay').classList.add('active');
+    }
+
+    function cerrarResultado() {
+      document.getElementById('resultado-overlay').classList.remove('active');
+      init();
+    }
+
+    async function guardarGanador(nombre, premio) {
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'guardarGanador',
+            nombre: nombre,
+            premio: premio
+          })
+        });
+      } catch (e) {
+        console.error('Error al guardar ganador:', e);
+      }
+    }
+
+    // ============================================================
+    // COMPRA DE RIFAS
+    // ============================================================
+    function iniciarCompra() {
+      document.getElementById('modal-aportar').classList.add('active');
+    }
+
+    function seleccionarNiña() {
+      cerrarModal('modal-aportar');
+      const container = document.getElementById('lista-niñas');
+      container.innerHTML = '';
+      
+      if (listaChicas.length === 0) {
+        container.innerHTML = '<p style="color:#b8a4ae;">No hay chicas registradas. Puedes continuar sin seleccionar.</p>';
+        const btnSaltar = document.createElement('button');
+        btnSaltar.className = 'btn-secondary';
+        btnSaltar.textContent = 'Saltar (fondo general)';
+        btnSaltar.style.width = '100%';
+        btnSaltar.onclick = () => {
+          niñaSeleccionada = '';
+          cerrarModal('modal-niñas');
+          seguirCompra();
+        };
+        container.appendChild(btnSaltar);
+      } else {
+        listaChicas.forEach(c => {
+          const btn = document.createElement('button');
+          btn.className = 'btn-secondary';
+          btn.textContent = c.nombre;
+          btn.style.flex = '1';
+          btn.onclick = () => {
+            niñaSeleccionada = c.nombre;
+            cerrarModal('modal-niñas');
+            seguirCompra();
+          };
+          container.appendChild(btn);
+        });
+        const btnSaltar = document.createElement('button');
+        btnSaltar.className = 'btn-secondary';
+        btnSaltar.textContent = 'Saltar (fondo general)';
+        btnSaltar.style.width = '100%';
+        btnSaltar.onclick = () => {
+          niñaSeleccionada = '';
+          cerrarModal('modal-niñas');
+          seguirCompra();
+        };
+        container.appendChild(btnSaltar);
+      }
+      
+      document.getElementById('modal-niñas').classList.add('active');
+    }
+
+    function seguirCompra() {
+      cerrarModal('modal-aportar');
+      cerrarModal('modal-niñas');
+      cantidadRifas = 1;
+      document.getElementById('cantidad-display').textContent = cantidadRifas;
+      document.getElementById('total-display').textContent = (cantidadRifas * PRECIO_RIFA).toLocaleString('es-PY');
+      document.getElementById('modal-cantidad').classList.add('active');
+    }
+
+    function cambiarCantidad(delta) {
+      cantidadRifas = Math.max(1, cantidadRifas + delta);
+      document.getElementById('cantidad-display').textContent = cantidadRifas;
+      document.getElementById('total-display').textContent = (cantidadRifas * PRECIO_RIFA).toLocaleString('es-PY');
+    }
+
+    function confirmarCompra() {
+      cerrarModal('modal-cantidad');
+      const total = cantidadRifas * PRECIO_RIFA;
+      guardarCompra(total);
+      
+      const alias = datosAdmin.alias || 'jerovia.rifa';
+      const mensaje = encodeURIComponent(
+        `Gracias por contribuir con Jerovia!!\n` +
+        `Podes enviar este mensaje para que el chat quede entre los frecuentes a modo de facilitar el envio del comprobante\n` +
+        `Monto a pagar: ${total.toLocaleString('es-PY')} Gs\n` +
+        `Alias: ${alias}`
+      );
+      window.open(`https://wa.me/${datosAdmin.telefono || '595981614237'}?text=${mensaje}`, '_blank');
+      mostrarToast('¡Gracias por tu compra!');
+    }
+
+    async function guardarCompra(total) {
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'comprarRifa',
+            nombre: 'Usuario', // Podrías pedir nombre, pero lo dejamos simple
+            cantidad: cantidadRifas,
+            total: total,
+            niña: niñaSeleccionada
+          })
+        });
+      } catch (e) {
+        console.error('Error al guardar compra:', e);
+      }
+    }
+
+    // ============================================================
+    // UTILIDADES
+    // ============================================================
+    function cerrarModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function mostrarToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.style.visibility = 'visible';
+      toast.style.opacity = '1';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.style.visibility = 'hidden', 300);
+      }, 3500);
+    }
+
+    // ============================================================
+    // INICIAR
+    // ============================================================
+    init();
+  </script>
+</body>
+</html>
