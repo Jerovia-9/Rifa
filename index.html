@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rifa Virtual · Asamblea Jerovia N°9</title>
+  <title>Rifa · Asamblea Jerovia N°9</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,24 +13,24 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(145deg, #fdf6f9 0%, #fff0f5 100%);
+      background: #f8f6f7;
       min-height: 100vh;
       color: #2d2d2d;
       padding: 0;
-      padding-bottom: 100px;
+      padding-bottom: 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* ===== ARCOÍRIS ===== */
+    /* ===== ARCOÍRIS (más sutil) ===== */
     .rainbow-bar {
       width: 100%;
-      height: 6px;
+      height: 4px;
       background: linear-gradient(90deg, #D8303B, #F58634, #FFE61C, #00A859, #00AFEF, #0065A0, #727CB6);
       background-size: 300% 100%;
       animation: arcoirisMove 6s ease-in-out infinite alternate;
-      box-shadow: 0 4px 20px rgba(216,48,59,0.2);
+      opacity: 0.6;
     }
     @keyframes arcoirisMove { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
 
@@ -38,113 +38,121 @@
     .container {
       max-width: 1100px;
       width: 100%;
-      padding: 1.5rem 1.5rem 1rem;
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 0 0 40px 40px;
-      box-shadow: 0 30px 60px -20px rgba(214,51,132,0.25), 0 10px 30px -10px rgba(0,0,0,0.05);
-      border: 1px solid rgba(255,255,255,0.5);
+      padding: 2rem 2rem 1.5rem;
+      background: white;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      border: 1px solid #f0ecee;
     }
 
     /* ===== HEADER ===== */
     header {
       text-align: center;
-      padding: 1rem 0 0.5rem;
+      padding: 0.5rem 0 1.5rem;
+      border-bottom: 1px solid #f0ecee;
+      margin-bottom: 1.5rem;
     }
     header h1 {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 2.8rem;
+      font-size: 2.4rem;
       color: #1a1a1a;
+      letter-spacing: 1px;
     }
     header h1 span {
-      background: linear-gradient(135deg, #d63384, #b82a6e);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #b82a6e;
     }
     header .subtitle {
       font-weight: 300;
       color: #7a6a72;
-      font-size: 1rem;
+      font-size: 0.95rem;
       letter-spacing: 1px;
+      margin-top: 0.2rem;
     }
 
-    /* ===== BOTONES PRINCIPALES ===== */
+    /* ===== BOTONES ===== */
     .btn-primary {
-      background: linear-gradient(135deg, #d63384, #b82a6e);
+      background: #b82a6e;
       color: white;
       border: none;
-      padding: 14px 32px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: 0.25s;
-      box-shadow: 0 8px 24px rgba(214,51,132,0.3);
-      letter-spacing: 0.5px;
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 14px 32px rgba(214,51,132,0.4);
-    }
-    .btn-secondary {
-      background: white;
-      color: #d63384;
-      border: 2px solid #d63384;
-      padding: 12px 28px;
-      border-radius: 60px;
+      padding: 12px 32px;
+      border-radius: 40px;
       font-weight: 600;
       font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+      box-shadow: 0 4px 16px rgba(184, 42, 110, 0.2);
+      letter-spacing: 0.3px;
+    }
+    .btn-primary:hover {
+      background: #9e2059;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(184, 42, 110, 0.25);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: #b82a6e;
+      border: 1.5px solid #b82a6e;
+      padding: 10px 28px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.95rem;
       cursor: pointer;
       transition: 0.25s;
     }
     .btn-secondary:hover {
-      background: #d63384;
+      background: #b82a6e;
       color: white;
     }
     .btn-sutil {
       background: none;
       border: none;
-      color: #b8a4ae;
-      font-size: 0.75rem;
+      color: #b0a8ac;
+      font-size: 0.7rem;
       text-decoration: underline;
       cursor: pointer;
       transition: 0.2s;
     }
-    .btn-sutil:hover { color: #d63384; }
+    .btn-sutil:hover { color: #b82a6e; }
 
-    /* ===== PREMIOS ===== */
+    /* ===== PREMIOS (más sobrios) ===== */
     .premios-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 16px;
       justify-content: center;
-      margin: 2rem 0;
+      margin: 1.5rem 0 2rem;
     }
     .premio-card {
-      background: white;
-      border-radius: 20px;
-      padding: 1.5rem 2rem;
-      min-width: 180px;
+      background: #faf8f9;
+      border-radius: 16px;
+      padding: 1.2rem 1.8rem;
+      min-width: 150px;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-      border: 1px solid #f0dce4;
+      border: 1px solid #f0ecee;
+      transition: 0.2s;
     }
-    .premio-card .icono { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .premio-card:hover { border-color: #d4c8ce; }
+    .premio-card .icono { font-size: 1.8rem; margin-bottom: 0.3rem; }
     .premio-card .nombre {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #d63384;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2d2d2d;
     }
+    .premio-card .estado {
+      font-size: 0.7rem;
+      color: #b0a8ac;
+      margin-top: 4px;
+    }
+    .premio-card .estado.ganado { color: #b82a6e; font-weight: 500; }
 
     /* ===== MODALES ===== */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.35);
-      backdrop-filter: blur(6px);
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(4px);
       display: none;
       justify-content: center;
       align-items: center;
@@ -155,26 +163,64 @@
     .modal-content {
       background: white;
       padding: 2rem 2rem 1.8rem;
-      border-radius: 30px;
-      max-width: 480px;
+      border-radius: 24px;
+      max-width: 460px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-      border-top: 6px solid #d63384;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      border-top: 4px solid #b82a6e;
       text-align: center;
     }
     .modal-content h2 {
       font-family: 'Playfair Display', serif;
-      color: #d63384;
-      margin-bottom: 0.5rem;
+      color: #2d2d2d;
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
     }
-    .modal-content p { color: #5a4a52; font-size: 0.95rem; margin-bottom: 1.2rem; }
+    .modal-content .sub {
+      color: #7a6a72;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
     .modal-content .btn-group {
       display: flex;
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    /* ===== CAMPOS DEL FORMULARIO ===== */
+    .campo-form {
+      width: 100%;
+      margin-bottom: 12px;
+      text-align: left;
+    }
+    .campo-form label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #7a6a72;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+    .campo-form input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #e8e2e5;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: 0.2s;
+      background: #faf8f9;
+    }
+    .campo-form input:focus {
+      border-color: #b82a6e;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(184, 42, 110, 0.06);
     }
 
     /* ===== SELECTOR DE CANTIDAD ===== */
@@ -183,62 +229,64 @@
       align-items: center;
       justify-content: center;
       gap: 20px;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #d63384;
-      margin: 1rem 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #b82a6e;
+      margin: 0.5rem 0 0.8rem;
     }
     .cantidad-selector button {
-      background: #f5e8ee;
+      background: #f0ecee;
       border: none;
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       cursor: pointer;
       transition: 0.2s;
-      color: #d63384;
+      color: #2d2d2d;
     }
-    .cantidad-selector button:hover { background: #d63384; color: white; }
-    .total-text { font-size: 1.2rem; color: #5a4a52; margin: 0.5rem 0; }
-    .total-text strong { color: #d63384; font-size: 1.5rem; }
+    .cantidad-selector button:hover { background: #b82a6e; color: white; }
+    .total-text {
+      font-size: 1.1rem;
+      color: #5a4a52;
+      margin: 0.3rem 0 0.8rem;
+    }
+    .total-text strong { color: #b82a6e; font-size: 1.4rem; }
 
     /* ===== RULETA ===== */
     #ruleta-container {
       display: none;
       flex-direction: column;
       align-items: center;
-      margin: 2rem 0;
+      margin: 1.5rem 0;
     }
     #ruleta-container.active { display: flex; }
     #ruleta-canvas {
       width: 100%;
-      max-width: 500px;
+      max-width: 460px;
       aspect-ratio: 1/1;
       border-radius: 50%;
-      box-shadow: 0 0 40px rgba(214,51,132,0.15);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
       background: white;
+      border: 1px solid #f0ecee;
     }
     .ruleta-info {
       display: flex;
       justify-content: space-between;
       width: 100%;
-      max-width: 500px;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #5a4a52;
+      max-width: 460px;
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      color: #7a6a72;
     }
-    .ruleta-info .countdown {
-      font-weight: 600;
-      color: #d63384;
-    }
+    .ruleta-info .countdown { font-weight: 500; color: #b82a6e; }
 
     /* ===== RESULTADO ===== */
     #resultado-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(26,11,20,0.92);
-      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
       display: none;
       justify-content: center;
       align-items: center;
@@ -249,65 +297,67 @@
     #resultado-overlay.active { display: flex; }
     #resultado-overlay .result-box {
       background: white;
-      padding: 3rem 2.5rem;
-      border-radius: 40px;
-      max-width: 500px;
+      padding: 2.5rem 2.5rem 2rem;
+      border-radius: 28px;
+      max-width: 480px;
       width: 100%;
-      box-shadow: 0 0 60px rgba(255,126,179,0.2);
-      border-top: 8px solid #d63384;
+      border-top: 6px solid #b82a6e;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
     }
     #resultado-overlay .result-box .titulo {
       font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      color: #d63384;
-      margin-bottom: 0.5rem;
+      font-size: 2.4rem;
+      color: #b82a6e;
+      margin-bottom: 0.3rem;
     }
     #resultado-overlay .result-box .nombre-ganador {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
+      font-size: 2rem;
       color: #1a1a1a;
-      margin: 0.5rem 0;
+      margin: 0.3rem 0;
     }
     #resultado-overlay .result-box .premio-ganado {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #5a4a52;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
     }
 
     /* ===== FOOTER ===== */
     .footer {
       max-width: 1100px;
       width: 100%;
-      margin-top: 2rem;
-      padding: 1.2rem 1.5rem 0.5rem;
+      margin-top: 1.5rem;
+      padding: 1rem 1.5rem 0.3rem;
       text-align: center;
-      font-size: 0.8rem;
-      color: #b8a4ae;
-      border-top: 1px solid rgba(214,51,132,0.08);
+      font-size: 0.75rem;
+      color: #b8b0b4;
+      border-top: 1px solid #f0ecee;
     }
     .footer .rainbow-dots {
       display: inline-flex;
-      gap: 6px;
-      margin-bottom: 0.5rem;
+      gap: 5px;
+      margin-bottom: 0.3rem;
     }
     .footer .rainbow-dots span {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       display: inline-block;
+      opacity: 0.6;
     }
-    .footer .linea-orden { color: #7a6a72; }
-    .footer .linea-asamblea { color: #d63384; font-weight: 600; }
+    .footer .linea-orden { color: #b0a8ac; }
+    .footer .linea-asamblea { color: #b82a6e; font-weight: 500; }
     .footer .linea-jurisdiccion { color: #1a5276; }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 640px) {
-      header h1 { font-size: 2rem; }
+      .container { padding: 1.2rem; }
+      header h1 { font-size: 1.8rem; }
       .modal-content { padding: 1.5rem; }
-      .premio-card { min-width: 140px; padding: 1rem; }
-      .cantidad-selector { font-size: 1.4rem; }
-      #resultado-overlay .result-box .titulo { font-size: 2rem; }
-      #resultado-overlay .result-box .nombre-ganador { font-size: 1.6rem; }
+      .premio-card { min-width: 120px; padding: 0.8rem 1rem; }
+      .cantidad-selector { font-size: 1.3rem; }
+      #resultado-overlay .result-box .titulo { font-size: 1.8rem; }
+      #resultado-overlay .result-box .nombre-ganador { font-size: 1.4rem; }
     }
   </style>
 </head>
@@ -321,32 +371,29 @@
 
     <!-- HEADER -->
     <header>
-      <h1>🎟️ <span>Rifa Jerovia</span></h1>
-      <p class="subtitle">Sorteamos grandes premios · Cada rifa cuesta <strong>10.000 Gs</strong></p>
+      <h1><span>Rifa</span> Jerovia</h1>
+      <p class="subtitle">Cada rifa · 10.000 Gs · Sorteo en vivo</p>
     </header>
 
     <!-- PREMIOS -->
     <div id="premios-container">
-      <div class="premios-grid" id="premios-grid">
-        <!-- Se llena desde el script -->
-      </div>
+      <div class="premios-grid" id="premios-grid"></div>
     </div>
 
     <!-- BOTONES PRINCIPALES -->
-    <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin:1.5rem 0;">
-      <button class="btn-primary" onclick="iniciarCompra()">🎯 Comprar ahora</button>
-      <button class="btn-secondary" onclick="mostrarRuleta()">🎡 Mirar ruleta</button>
+    <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin:1.5rem 0;">
+      <button class="btn-primary" onclick="iniciarCompra()">Comprar rifa</button>
+      <button class="btn-secondary" onclick="mostrarRuleta()">Ver ruleta</button>
     </div>
 
-    <!-- RULETA (oculta inicialmente) -->
+    <!-- RULETA (oculta) -->
     <div id="ruleta-container">
       <canvas id="ruleta-canvas" width="500" height="500"></canvas>
       <div class="ruleta-info">
         <span>Participantes: <strong id="participantes-count">0</strong></span>
         <span class="countdown" id="countdown-display">⏳ Cargando...</span>
       </div>
-      <!-- Botón girar (sutil, pide contraseña) -->
-      <button class="btn-sutil" onclick="pedirContraseña()" style="margin-top:12px;">🔐 Girar ruleta (admin)</button>
+      <button class="btn-sutil" onclick="pedirContraseña()" style="margin-top:10px;">🔐 Girar ruleta (admin)</button>
     </div>
 
   </div>
@@ -367,16 +414,16 @@
       <span class="linea-asamblea">Asamblea Jerovia N°9</span> · 
       <span class="linea-jurisdiccion">Gran Jurisdicción de Paraguay</span>
     </p>
-    <p style="opacity:0.5; font-size:0.7rem;">© 2026 · Sol Isabella Volpe</p>
+    <p style="opacity:0.4; font-size:0.65rem; margin-top:0.2rem;">© 2026 · Sol Isabella Volpe</p>
   </footer>
 
   <!-- ===== MODALES ===== -->
 
-  <!-- Modal: ¿Aportar a niña específica? -->
+  <!-- Modal: ¿Aportar a una niña? -->
   <div class="modal-overlay" id="modal-aportar">
     <div class="modal-content">
-      <h2>💖 ¿Aportar a una niña?</h2>
-      <p>¿Quieres que tu aporte vaya a la caja de una niña en específico?</p>
+      <h2>Aportar a una niña</h2>
+      <p class="sub">¿Quieres que tu aporte vaya a la caja de una niña en específico?</p>
       <div class="btn-group">
         <button class="btn-secondary" onclick="seleccionarNiña()">Sí</button>
         <button class="btn-primary" onclick="seguirCompra()">No</button>
@@ -387,32 +434,52 @@
   <!-- Modal: Lista de niñas -->
   <div class="modal-overlay" id="modal-niñas">
     <div class="modal-content">
-      <h2>👧 Selecciona una niña</h2>
-      <div id="lista-niñas" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:1rem 0;"></div>
+      <h2>Seleccionar niña</h2>
+      <p class="sub">Elige a quién quieres apoyar</p>
+      <div id="lista-niñas" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:0.5rem 0;"></div>
       <button class="btn-sutil" onclick="cerrarModal('modal-niñas'); seguirCompra();">Saltar (fondo general)</button>
     </div>
   </div>
 
-  <!-- Modal: Cantidad -->
+  <!-- Modal: Datos y cantidad -->
   <div class="modal-overlay" id="modal-cantidad">
     <div class="modal-content">
-      <h2>🎫 ¿Cuántas rifas?</h2>
-      <div class="cantidad-selector">
-        <button onclick="cambiarCantidad(-1)">−</button>
-        <span id="cantidad-display">1</span>
-        <button onclick="cambiarCantidad(1)">+</button>
+      <h2>Completá tus datos</h2>
+      <p class="sub">Ingresá tu información para registrar la compra</p>
+
+      <div class="campo-form">
+        <label>Nombre completo</label>
+        <input type="text" id="campo-nombre" placeholder="Ej. Ana López">
       </div>
-      <div class="total-text">Total: <strong id="total-display">10.000</strong> Gs</div>
-      <button class="btn-primary" onclick="confirmarCompra()" style="margin-top:1rem;">Comprar</button>
+      <div class="campo-form">
+        <label>C.I.</label>
+        <input type="text" id="campo-ci" placeholder="Número de cédula">
+      </div>
+      <div class="campo-form">
+        <label>Celular</label>
+        <input type="text" id="campo-celular" placeholder="Ej. 0981 123 456">
+      </div>
+
+      <div style="border-top:1px solid #f0ecee; margin:1rem 0 0.5rem; padding-top:0.5rem;">
+        <p style="font-size:0.9rem; color:#5a4a52;">Cantidad de rifas</p>
+        <div class="cantidad-selector">
+          <button onclick="cambiarCantidad(-1)">−</button>
+          <span id="cantidad-display">1</span>
+          <button onclick="cambiarCantidad(1)">+</button>
+        </div>
+        <div class="total-text">Total: <strong id="total-display">10.000</strong> Gs</div>
+      </div>
+
+      <button class="btn-primary" onclick="confirmarCompra()" style="margin-top:0.5rem; width:100%;">Comprar</button>
     </div>
   </div>
 
-  <!-- Modal: Contraseña para girar -->
+  <!-- Modal: Contraseña -->
   <div class="modal-overlay" id="modal-password">
     <div class="modal-content">
-      <h2>🔐 Contraseña</h2>
-      <p>Ingresa la contraseña para girar la ruleta</p>
-      <input type="password" id="input-password" placeholder="Contraseña" style="width:100%; padding:12px; border-radius:60px; border:2px solid #f0dce4; margin:1rem 0; font-size:1rem; text-align:center;">
+      <h2>Contraseña</h2>
+      <p class="sub">Ingresa la contraseña para girar la ruleta</p>
+      <input type="password" id="input-password" placeholder="Contraseña" style="width:100%; padding:10px 14px; border-radius:12px; border:1.5px solid #e8e2e5; margin:0.8rem 0; font-size:1rem; text-align:center;">
       <div class="btn-group">
         <button class="btn-secondary" onclick="cerrarModal('modal-password')">Cancelar</button>
         <button class="btn-primary" onclick="validarContraseña()">Entrar</button>
@@ -420,34 +487,34 @@
     </div>
   </div>
 
-  <!-- Modal: Seleccionar premio a sortear -->
+  <!-- Modal: Seleccionar premio -->
   <div class="modal-overlay" id="modal-premios">
     <div class="modal-content">
-      <h2>🎁 Elegir premio</h2>
-      <p>Selecciona el premio que vas a sortear</p>
-      <div id="lista-premios" style="display:flex; flex-direction:column; gap:8px; margin:1rem 0;"></div>
+      <h2>Elegir premio</h2>
+      <p class="sub">Selecciona el premio que vas a sortear</p>
+      <div id="lista-premios" style="display:flex; flex-direction:column; gap:8px; margin:0.5rem 0;"></div>
       <button class="btn-sutil" onclick="cerrarModal('modal-premios')">Cancelar</button>
     </div>
   </div>
 
-  <!-- RESULTADO DEL SORTEO -->
+  <!-- RESULTADO SORTEO -->
   <div id="resultado-overlay">
     <div class="result-box">
-      <div class="titulo">🎉 ¡FELICIDADES!</div>
-      <div class="nombre-ganador" id="ganador-nombre">Fulano Detal</div>
-      <div class="premio-ganado" id="ganador-premio">has ganado <strong>Un gran premio</strong></div>
+      <div class="titulo">¡FELICIDADES!</div>
+      <div class="nombre-ganador" id="ganador-nombre">Fulano</div>
+      <div class="premio-ganado" id="ganador-premio">ha ganado <strong>un premio</strong></div>
       <button class="btn-primary" onclick="cerrarResultado()">Continuar</button>
     </div>
   </div>
 
   <!-- TOAST -->
-  <div id="toast" style="position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#d63384; color:white; padding:14px 28px; border-radius:60px; font-weight:600; box-shadow:0 8px 30px rgba(214,51,132,0.3); visibility:hidden; opacity:0; transition:0.3s; z-index:9999;">Mensaje</div>
+  <div id="toast" style="position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#2d2d2d; color:white; padding:12px 24px; border-radius:40px; font-weight:500; font-size:0.9rem; box-shadow:0 8px 30px rgba(0,0,0,0.1); visibility:hidden; opacity:0; transition:0.3s; z-index:9999;">Mensaje</div>
 
   <script>
     // ============================================================
     // CONFIGURACIÓN
     // ============================================================
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw108qJ0KEoFILSsLsAFQlzNWN8JcF00IODn9wbQyqEvGWViHRzHDHIjX7vL0buFIHHRg/exec"; // <--- REEMPLAZAR
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMI0KX6hJnyxMAWU2v-S72UebJ4QK_PI7_lxGaimYozyDKxzV5nEDOcnb5mcRyhjRm/exec"; // <--- REEMPLAZAR
     const PRECIO_RIFA = 10000;
 
     let cantidadRifas = 1;
@@ -471,30 +538,27 @@
         datosAdmin = data.admin || {};
         listaChicas = data.chicas || [];
 
-        // Mostrar premios
         const grid = document.getElementById('premios-grid');
         grid.innerHTML = '';
         premios.forEach(p => {
+          const estado = p.ganador ? `<span class="estado ganado">🏆 ${p.ganador}</span>` : `<span class="estado">Disponible</span>`;
           grid.innerHTML += `
             <div class="premio-card">
               <div class="icono">🎁</div>
               <div class="nombre">${p.nombre}</div>
-              <div style="font-size:0.8rem; color:#b8a4ae; margin-top:4px;">${p.ganador ? '🏆 ' + p.ganador : 'Disponible'}</div>
+              <div class="estado ${p.ganador ? 'ganado' : ''}">${p.ganador ? '🏆 ' + p.ganador : 'Disponible'}</div>
             </div>
           `;
         });
 
-        // Actualizar contador de participantes
         document.getElementById('participantes-count').textContent = participantes.filter(p => p.pagado === 'SI').length;
 
-        // Iniciar cuenta regresiva
         if (datosAdmin.fecha) {
           iniciarCuentaRegresiva(datosAdmin.fecha);
         }
-
       } catch (e) {
         console.error(e);
-        mostrarToast('Error al cargar datos. Recarga la página.');
+        mostrarToast('Error al cargar datos.');
       }
     }
 
@@ -526,9 +590,7 @@
     function mostrarRuleta() {
       const container = document.getElementById('ruleta-container');
       container.classList.toggle('active');
-      if (container.classList.contains('active')) {
-        dibujarRuleta();
-      }
+      if (container.classList.contains('active')) dibujarRuleta();
     }
 
     function dibujarRuleta() {
@@ -539,7 +601,6 @@
 
       ctx.clearRect(0, 0, w, h);
 
-      // Lista de nombres (solo los que pagaron)
       const nombres = [];
       participantes.forEach(p => {
         if (p.pagado === 'SI') {
@@ -550,15 +611,14 @@
       });
 
       if (nombres.length === 0) {
-        ctx.font = '20px Montserrat';
-        ctx.fillStyle = '#b8a4ae';
+        ctx.font = '18px Montserrat';
+        ctx.fillStyle = '#b0a8ac';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText('Sin participantes aún', cx, cy);
         return;
       }
 
-      // Orden consistente (usando una semilla fija: la longitud de participantes)
       const seed = participantes.length;
       const orden = nombres.map((n, i) => ({ n, i }));
       orden.sort((a,b) => (a.i * seed + a.n.length) - (b.i * seed + b.n.length));
@@ -574,43 +634,39 @@
         ctx.moveTo(cx, cy);
         ctx.arc(cx, cy, r, start, end);
         ctx.closePath();
-        ctx.fillStyle = i % 2 === 0 ? '#fce4ec' : '#f8bbd0';
+        ctx.fillStyle = i % 2 === 0 ? '#f5f0f2' : '#ece6e9';
         ctx.fill();
         ctx.strokeStyle = '#fff';
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // Texto
         ctx.save();
         ctx.translate(cx, cy);
         ctx.rotate(start + angulo/2);
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.font = '12px Montserrat';
+        ctx.font = '11px Montserrat';
         ctx.fillStyle = '#2d2d2d';
         ctx.fillText(nombresOrdenados[i], r * 0.65, 0);
         ctx.restore();
       }
 
-      // Círculo central
       ctx.beginPath();
-      ctx.arc(cx, cy, 20, 0, 2 * Math.PI);
-      ctx.fillStyle = '#d63384';
+      ctx.arc(cx, cy, 18, 0, 2 * Math.PI);
+      ctx.fillStyle = '#b82a6e';
       ctx.fill();
       ctx.strokeStyle = 'white';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 2;
       ctx.stroke();
 
-      // Flecha indicadora
       ctx.beginPath();
-      ctx.moveTo(cx + r + 10, cy);
-      ctx.lineTo(cx + r + 30, cy - 10);
-      ctx.lineTo(cx + r + 30, cy + 10);
+      ctx.moveTo(cx + r + 8, cy);
+      ctx.lineTo(cx + r + 26, cy - 8);
+      ctx.lineTo(cx + r + 26, cy + 8);
       ctx.closePath();
-      ctx.fillStyle = '#d63384';
+      ctx.fillStyle = '#b82a6e';
       ctx.fill();
 
-      // Guardar estado para animación
       window.ruletaNombres = nombresOrdenados;
       window.ruletaAngulo = 0;
     }
@@ -648,7 +704,7 @@
         }
       });
       if (container.children.length === 0) {
-        container.innerHTML = '<p style="color:#b8a4ae;">¡Todos los premios ya tienen ganador!</p>';
+        container.innerHTML = '<p style="color:#b0a8ac;">Todos los premios ya tienen ganador.</p>';
       }
       document.getElementById('modal-premios').classList.add('active');
     }
@@ -658,7 +714,6 @@
       if (ruletaGirando) return;
       ruletaGirando = true;
 
-      // Obtener lista de nombres (pagados)
       const nombres = [];
       participantes.forEach(p => {
         if (p.pagado === 'SI') {
@@ -674,11 +729,9 @@
         return;
       }
 
-      // Elegir ganador
       const idx = Math.floor(Math.random() * nombres.length);
       ganadorActual = nombres[idx];
 
-      // Animación de la ruleta
       const canvas = document.getElementById('ruleta-canvas');
       const ctx = canvas.getContext('2d');
       const w = canvas.width, h = canvas.height;
@@ -720,7 +773,7 @@
           ctx.moveTo(cx, cy);
           ctx.arc(cx, cy, r, startA, endA);
           ctx.closePath();
-          ctx.fillStyle = i % 2 === 0 ? '#fce4ec' : '#f8bbd0';
+          ctx.fillStyle = i % 2 === 0 ? '#f5f0f2' : '#ece6e9';
           ctx.fill();
           ctx.strokeStyle = '#fff';
           ctx.lineWidth = 1;
@@ -731,26 +784,26 @@
           ctx.rotate(startA + angulo/2);
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          ctx.font = '12px Montserrat';
+          ctx.font = '11px Montserrat';
           ctx.fillStyle = '#2d2d2d';
           ctx.fillText(window.ruletaNombres[i], r * 0.65, 0);
           ctx.restore();
         }
 
         ctx.beginPath();
-        ctx.arc(cx, cy, 20, 0, 2 * Math.PI);
-        ctx.fillStyle = '#d63384';
+        ctx.arc(cx, cy, 18, 0, 2 * Math.PI);
+        ctx.fillStyle = '#b82a6e';
         ctx.fill();
         ctx.strokeStyle = 'white';
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 2;
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.moveTo(cx + r + 10, cy);
-        ctx.lineTo(cx + r + 30, cy - 10);
-        ctx.lineTo(cx + r + 30, cy + 10);
+        ctx.moveTo(cx + r + 8, cy);
+        ctx.lineTo(cx + r + 26, cy - 8);
+        ctx.lineTo(cx + r + 26, cy + 8);
         ctx.closePath();
-        ctx.fillStyle = '#d63384';
+        ctx.fillStyle = '#b82a6e';
         ctx.fill();
 
         ctx.restore();
@@ -783,15 +836,9 @@
       try {
         await fetch(SCRIPT_URL, {
           method: 'POST',
-          body: JSON.stringify({
-            action: 'guardarGanador',
-            nombre: nombre,
-            premio: premio
-          })
+          body: JSON.stringify({ action: 'guardarGanador', nombre, premio })
         });
-      } catch (e) {
-        console.error('Error al guardar ganador:', e);
-      }
+      } catch (e) { console.error(e); }
     }
 
     // ============================================================
@@ -805,9 +852,9 @@
       cerrarModal('modal-aportar');
       const container = document.getElementById('lista-niñas');
       container.innerHTML = '';
-      
+
       if (listaChicas.length === 0) {
-        container.innerHTML = '<p style="color:#b8a4ae;">No hay chicas registradas. Puedes continuar sin seleccionar.</p>';
+        container.innerHTML = '<p style="color:#b0a8ac;">No hay chicas registradas.</p>';
         const btnSaltar = document.createElement('button');
         btnSaltar.className = 'btn-secondary';
         btnSaltar.textContent = 'Saltar (fondo general)';
@@ -842,7 +889,7 @@
         };
         container.appendChild(btnSaltar);
       }
-      
+
       document.getElementById('modal-niñas').classList.add('active');
     }
 
@@ -862,10 +909,19 @@
     }
 
     function confirmarCompra() {
+      const nombre = document.getElementById('campo-nombre').value.trim();
+      const ci = document.getElementById('campo-ci').value.trim();
+      const celular = document.getElementById('campo-celular').value.trim();
+
+      if (!nombre || !ci || !celular) {
+        mostrarToast('Completá todos tus datos antes de comprar.');
+        return;
+      }
+
       cerrarModal('modal-cantidad');
       const total = cantidadRifas * PRECIO_RIFA;
-      guardarCompra(total);
-      
+      guardarCompra(nombre, ci, celular, total);
+
       const alias = datosAdmin.alias || 'jerovia.rifa';
       const mensaje = encodeURIComponent(
         `Gracias por contribuir con Jerovia!!\n` +
@@ -877,21 +933,21 @@
       mostrarToast('¡Gracias por tu compra!');
     }
 
-    async function guardarCompra(total) {
+    async function guardarCompra(nombre, ci, celular, total) {
       try {
         await fetch(SCRIPT_URL, {
           method: 'POST',
           body: JSON.stringify({
             action: 'comprarRifa',
-            nombre: 'Usuario', // Podrías pedir nombre, pero lo dejamos simple
+            nombre,
+            ci,
+            celular,
             cantidad: cantidadRifas,
-            total: total,
+            total,
             niña: niñaSeleccionada
           })
         });
-      } catch (e) {
-        console.error('Error al guardar compra:', e);
-      }
+      } catch (e) { console.error('Error al guardar compra:', e); }
     }
 
     // ============================================================
